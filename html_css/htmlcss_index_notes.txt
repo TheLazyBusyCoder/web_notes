@@ -1,0 +1,1048 @@
+[[properties]]
+[HTML]
+- div tag
+- meta tag
+- <a></a> anchour tag
+- <figure></figure> to nest image and captions
+- <form></form>
+- <label></label>
+- <header></header>
+- accesskey attribute
+- creating piano
+- input
+- creating sliding switch
+- select
+- tables 
+- tags
+
+[CSS]
+- blur
+- display property 
+- flex layout
+- box-sizing property
+- grid layout
+- css units
+- css variables
+- transition 
+- animations 
+- transform
+- media queries 
+- position property
+- linear gradient
+- radial gradient (sun)
+- rgba 
+- border
+- box shadow
+- CSS box model
+- filter property
+- : this thing
+- hide the text for screen readers only
+- smooth scrolling
+- object-fit
+- building trangle from square
+- place-items property
+- content property
+- flat ui colours (website for colours)
+#--------------------------------------------------#NOTES
+
+__________________________________________________start
+-----------------------
+| tags |
+-----------------------
+
+-------------------->CODE:
+
+<sub></sub>  subscript
+<sup></sup> supscript
+
+<iframe src="websiteUrl" name="" width="" height="" align="top|middle|bottom|" frameborder=1 width height ></iframe>
+
+<frameset rows="20%,30%">
+  <frame src="success.html" name="somthing">
+
+  </frame>
+</frameset>
+
+__________________________________________________end
+
+
+__________________________________________________start
+-----------------------
+| tables              |  
+-----------------------
+
+-------------------->THEORY:
+
+<table></table> -> table 
+<tr></tr> -> table row 
+<td></td> -> table data
+<th colspan='2'></th> -> little bold
+
+example: 
+  <table border=''>
+    <tr>
+      <td>leo</td>
+      <td>age</td>
+    </tr>
+  </table>
+
+
+
+-------------------->CODE:
+
+ <table>
+      <thead>
+        <tr>
+          <th class="table-heading" colspan="2">Output</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="table-row">
+          <th class="word">hi</th>
+          <td class="def">
+            <ol>
+              <li>hi how are you</li>
+            </ol>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+__________________________________________________end   
+__________________________________________________start
+-----------------------
+| blur                |
+-----------------------
+
+-------------------->CODE:
+filter: blur(0);
+
+filter: blur(4px);
+
+backdrop-filter: blur(20px) saturate(120%) contrast(200%);
+__________________________________________________end
+__________________________________________________start
+-----------------------
+| select              |
+-----------------------
+-------------------->CODE:
+<label for="pet-select">Choose a pet:</label>
+
+<select name="pets" id="pet-select">
+    <option value="">--Please choose an option--</option>
+    <option value="dog">Dog</option>
+    <option value="cat">Cat</option>
+    <option value="hamster">Hamster</option>
+    <option value="parrot">Parrot</option>
+    <option value="spider">Spider</option>
+    <option value="goldfish">Goldfish</option>
+</select>
+__________________________________________________end 
+__________________________________________________start
+-----------------------
+| input               |
+-----------------------
+
+-------------------->THEORY:
+
+input:checked {
+
+}
+
+inputmode = 'numberic' <- for mobile device.
+
+-------------------->CODE:
+
+__________________________________________________end
+__________________________________________________start
+-----------------------
+| content property    |
+-----------------------
+
+-------------------->THEORY:
+content: normal|none|counter|attr|string|open-quote|close-quote|no-open-quote|no-close-quote|url|initial|inherit;
+
+adds some text or anything to the element.
+element::before {
+  content: 'L';
+}
+
+__________________________________________________end
+__________________________________________________start
+-----------------------
+| place-items property |
+-----------------------
+
+The place-items property can be used to set the align-items and justify-items values at the same time. The place-items property takes one or two values. If one value is provided, it is used for both the align-items and justify-items properties. If two values are provided, the first value is used for the align-items property and the second value is used for the justify-items property.
+
+
+
+__________________________________________________end
+__________________________________________________start
+-----------------------
+| radial gradient (sun) |
+-----------------------
+
+.sky {
+  background: radial-gradient(circle closest-corner at 15% 15%,
+      #ffcf33,
+      #ffcf33 20%,
+      #ffff66 21%,
+      #bbeeff 100%
+    );
+}
+__________________________________________________end
+__________________________________________________sta
+-------------------------------
+| building trangle from square|
+-------------------------------
+
+.bb2a {
+  border-bottom: 5vw solid var(--building-color2);
+  border-left: 5vw solid transparent;
+  border-right: 5vw solid transparent;
+}
+__________________________________________________end
+__________________________________________________start
+-----------------------
+| creating piano      |
+-----------------------
+
+<body>
+    <div id="piano">
+      <div class="keys">
+        <div class="key"></div>
+        <div class="key black--key"></div>
+        <div class="key black--key"></div>
+        <div class="key"></div>
+        <div class="key black--key"></div>
+        <div class="key black--key"></div>
+        <div class="key black--key"></div>
+
+        <div class="key"></div>
+        <div class="key black--key"></div>
+        <div class="key black--key"></div>
+        <div class="key"></div>
+        <div class="key black--key"></div>
+        <div class="key black--key"></div>
+        <div class="key black--key"></div>
+
+        <div class="key"></div>
+        <div class="key black--key"></div>
+        <div class="key black--key"></div>
+        <div class="key"></div>
+        <div class="key black--key"></div>
+        <div class="key black--key"></div>
+        <div class="key black--key"></div>
+      </div>
+    </div>
+  </body>
+
+  html {
+  box-sizing: border-box;
+}
+
+*, *::before, *::after {
+  box-sizing: inherit;
+}
+
+#piano {
+  background-color: #00471b;
+  width: 992px;
+  height: 290px;
+  margin: 80px auto;
+  padding: 90px 20px 0 20px;
+  position: relative;
+  border-radius: 10px;
+}
+
+.keys {
+  background-color: #040404;
+  width: 949px;
+  height: 180px;
+  padding-left: 2px;
+  overflow: hidden;
+}
+
+.key {
+  background-color: #ffffff;
+  position: relative;
+  width: 41px;
+  height: 175px;
+  margin: 2px;
+  float: left;
+  border-radius: 0 0 3px 3px;
+}
+
+.key.black--key::after {
+  background-color: #1d1e22;
+  content: "";
+  position: absolute;
+  left: -18px;
+  width: 32px;
+  height: 100px;
+  border-radius: 0 0 3px 3px;
+}
+
+.logo {
+  width: 200px;
+  position: absolute;
+  top: 23px;
+}
+
+@media (max-width: 768px) {
+  #piano {
+    width: 358px;
+  }
+
+  .keys {
+    width: 318px;
+  }
+
+  .logo {
+    width: 150px;
+  }
+}
+
+__________________________________________________end
+__________________________________________________start
+-----------------------
+| object-fit          |
+-----------------------
+
+- to fit images.
+
+fill - This is default. The image is resized to fill the given dimension. If necessary, the image will be stretched or squished to fit
+contain - The image keeps its aspect ratio, but is resized to fit within the given dimension
+cover - The image keeps its aspect ratio and fills the given dimension. The image will be clipped to fit
+none - The image is not resized
+scale-down - the image is scaled down to the smallest version of none or contain
+
+__________________________________________________end
+__________________________________________________start
+-----------------------
+|  accesskey attribute |
+-----------------------
+
+keyboard shortcuts.
+<button type="submit" accesskey="s">Submit</button>
+
+__________________________________________________end
+__________________________________________________start
+-----------------------
+| smooth scrolling    |
+-----------------------
+
+* {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    * {
+       scroll-behavior: smooth;
+    }
+  }
+
+__________________________________________________end
+__________________________________________________start
+-----------------------------------------
+| hide the text for screen readers only |
+-----------------------------------------
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+__________________________________________________end
+__________________________________________________start
+-----------------------
+| <header></header>   |
+-----------------------
+
+The header element will be used to introduce the page, as well as provide a navigation menu.
+The main element will contain the core content of your page.
+
+__________________________________________________end
+__________________________________________________start
+-----------------------
+| : this thing        |
+-----------------------
+
+// this is to ignore some class.
+.class_name:not(.some_other_class) {
+
+}
+__________________________________________________end
+__________________________________________________start
+-----------------------
+| filter property     |
+-----------------------
+
+p {
+  filter: blur(3px);
+}
+__________________________________________________end
+__________________________________________________start
+-----------------------
+| CSS box model       |
+-----------------------
+
+just boxes.
+
+__________________________________________________end
+__________________________________________________start
+-----------------------
+| box shadow          |
+-----------------------
+The box-shadow property lets you apply one or more shadows around an element. Here is basic syntax:
+box-shadow: offsetX offsetY blurRadius spreadRadius color;
+
+Here's how the offsetX and offsetY values work:
+
+- both offsetX and offsetY accept number values in px and other CSS units
+- a positive offsetX value moves the shadow right and a negative value moves it left
+- a positive offsetY value moves the shadow down and a negative value moves it up
+- if you want a value of zero (0) for any or both offsetX and offsetY, you don't need to add a unit. Every browser understands that zero means no change.
+
+box-shadow: 0 0 20px 0 rgba(83, 14, 14, 0.8);
+__________________________________________________end
+__________________________________________________start
+-----------------------
+| border              |
+-----------------------
+
+border-left: width style color;
+
+top-left, top-right, bottom-right, and bottom-left corners.
+border-radius: 30px 25px 60px 12px;
+__________________________________________________end
+
+__________________________________________________start
+-----------------------
+| rgba                |
+-----------------------
+
+//opacity.
+rgba(redValue, greenValue, blueValue, alphaValue);
+
+
+__________________________________________________end
+__________________________________________________start
+-----------------------
+| linear gradient     |
+-----------------------
+
+linear-gradient(gradientDirection, color1, color2, ...);
+
+% is stop value.
+.red {
+  background: linear-gradient(90deg, rgb(255, 0, 0) 75%, rgb(0, 255, 0), rgb(0, 0, 255));
+}
+
+repeating-linear-gradient(
+var(--building-color2),
+var(--building-color2) 6%,
+var(--window-color2) 6%,
+var(--window-color2) 9%
+    );
+
+If no gradientDirection argument is provided to the linear-gradient function, it arranges colors from top to bottom, or along a 180 degree line, by default.
+
+You can add multiple gradients to an element by separating them with a comma (,) like this:
+
+You can add multiple gradients to an element by separating them with a comma (,) like this:
+gradient1(
+  colors
+),
+gradient2(
+  colors
+);  
+__________________________________________________end
+__________________________________________________start
+-----------------------
+| position property   |
+-----------------------
+The position property specifies the type of positioning method used for an element
+There are five different position values:
+- static
+- relative
+- fixed
+- absolute
+- sticky
+Elements are then positioned using the 
+top, 
+bottom, 
+left,
+right 
+properties. However, these properties will not work unless the position property is set first. They also work differently depending on the position value.
+
+position: static;
+HTML elements are positioned static by default.
+Static positioned elements are not affected by the top, bottom, left, and right properties
+
+position: relative;
+the element will be in the flow , but will have access to top left properties. 
+
+position: fixed;
+An element with position: fixed; is positioned relative to the viewport, which means it always stays in the same place even if the page is scrolled. The top, right, bottom, and left properties are used to position the element.
+A fixed element does not leave a gap in the page where it would normally have been located.
+
+div.fixed {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  width: 300px;
+  border: 3px solid #73AD21;
+}
+
+position: absolute;
+The element will jump out of the flow of the document , till it finds a parent element that has a position property.
+
+
+position: sticky;
+An element with position: sticky; is positioned based on the user's scroll position.
+A sticky element toggles between relative and fixed, depending on the scroll position. It is positioned relative until a given offset position is met in the viewport - then it "sticks" in place (like position:fixed).
+__________________________________________________end
+__________________________________________________start
+-----------------------
+| media queries       |
+-----------------------
+
+all: Used for all media type devices
+print	Used for printers
+screen: Used for computer screens, tablets, smart-phones etc.
+speech: Used for screenreaders that "reads" the page out loud
+
+@media screen and (min-width: 480px) {
+  body {
+    background-color: lightgreen;
+  }
+}
+
+@media screen and (min-width: 480px) {
+  #leftsidebar {width: 200px; float: left;}
+  #main {margin-left: 216px;}
+}
+
+@media only screen and (max-width: 600px) {
+  body {
+    background-color: lightblue;
+  }
+}
+
+__________________________________________________end
+__________________________________________________start
+-----------------------
+| transform           |
+-----------------------
+
+In CSS, the transform property is used to apply various transformations to elements, allowing you to manipulate their position, size, rotation, and more. Here are some commonly used transformation functions that can be applied using the transform property:
+
+Translation (translate()): Moves an element along the X and Y axes.
+Example: transform: translate(100px, 50px);
+
+Rotation (rotate()): Rotates an element by a specified angle.
+Example: transform: rotate(45deg);
+
+Scaling (scale()): Scales an element by a specified factor.
+Example: transform: scale(1.5);
+
+Skew (skew()): Skews an element along the X and Y axes.
+Example: transform: skew(10deg, -5deg);
+
+Perspective (perspective()): Applies a 3D perspective transformation to an element.
+Example: transform: perspective(500px);
+
+Combined Transformations: You can combine multiple transformation functions in a single transform property.
+Example: transform: translate(50px, 50px) rotate(45deg) scale(1.2);
+
+The transform-origin property is used to set the point around which a CSS transformation is applied. For example, when performing a rotate (which you will do later in this project), the transform-origin determines around which point the element is rotated.
+
+Give the .line selector a transform-origin property of 0% 0%. This will offset the origin point by 0% from the left and 0% from the top, setting it to the top left corner of the element.
+transform: rotate(60deg);
+
+transform-origin property of 50% 0%. This will set the origin point to be offset 50% from the left and 0% from the top, placing it in the middle of the top edge of the element.
+
+To make the mountain look more like a mountain, you can use the skew transform function, which takes two arguments. The first being an angle to shear the x-axis by, and the second being an angle to shear the y-axis by.
+Use the transform property to skew the mountain by 0deg in the x-axis and 44deg in the y-axis.
+.left-mountain {
+  width: 300px;
+  height: 300px;
+  background: linear-gradient(rgb(203, 241, 228), rgb(80, 183, 255));
+  position: absolute;
+  transform: skew(0deg , 44deg);
+}
+
+transform: rotate(130deg) scaleX(-1);
+
+__________________________________________________end
+__________________________________________________start
+-----------------------
+| animations          |
+-----------------------
+
+.main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 90vh;
+}
+
+@keyframes AnimationName {
+  /* 0% animation completed */
+  /* we can use 0% rather then from  */
+  from {
+    transform: translateX(-300px);
+  }
+
+  50% {
+    transform: rotate(180deg);
+  }
+  /* 100% animation completed  */
+  /* we can use 100% rather then to  */
+  to {
+    /* back to normal */
+    transform: translateX(0);
+  }
+}
+
+.element {
+  /* animation: name duration timing-function delay iteration-count direction fill-mode; */
+
+  animation-name: AnimationName;
+  /* how long it takes to animate from 0% to 100% */
+  animation-duration: 1s;
+  animation-timing-function: ease;
+  animation-delay: 0s;
+  /* how many times to run */
+  /* infinite  */
+  animation-iteration-count: 1;
+  /* normal or reverse */
+  animation-direction: noraml;
+  /* before start and after end the item will be positioned in the last keyfame position  */
+  animation-fill-mode: both;
+
+  transform: translateX(-150px); /* this will get ignored */
+}
+__________________________________________________end
+__________________________________________________start
+-----------------------
+| transition          |
+-----------------------
+
+.btn {
+  height: 50px;
+  width: 150px;
+
+  /* makes transitino smooth */
+  /*   transition-property: transform;
+  transition-duration: 0.3s;
+  transition-timing-function: ease;
+  transition-delay: 0s; */
+
+  transition: transform 0.3s ease 0s, background-color 0.3s ease;
+
+  /* if we have more then one value  */
+  /* transition: all 0.3s ease 0s; */
+}
+
+.btn:hover {
+  transform: translateY(-5px);
+  background-color: red;
+}
+
+  transition: 1s ease-in-out 0ms;
+
+EXAMPLE:
+.box {
+  border-style: solid;
+  border-width: 1px;
+  display: block;
+  width: 100px;
+  height: 100px;
+  background-color: #0000ff;
+  transition: width 2s, height 2s, background-color 2s, rotate 2s;
+}
+
+.box:hover {
+  background-color: #ffcccc;
+  width: 200px;
+  height: 200px;
+  rotate: 180deg;
+}
+
+__________________________________________________end
+__________________________________________________start
+-----------------------
+| css variables       |
+-----------------------
+
+children can use parent variables;
+
+--my-color: blue;
+background-color: var(--my-color);
+This variable is blocked scoped.
+
+:root {
+  --my-color: black;
+}
+This variable is accessable to whole document.
+__________________________________________________end
+__________________________________________________start
+-----------------------
+| <form></form>       |
+-----------------------
+
+action="URL" 
+method="get"
+
+
+<form action="https://freecatphotoapp.com/submit-cat-photo">
+ <input required type="text" name="email>
+ <button type="submit">click</button>  
+</form>
+
+In order for a form's data to be accessed by the location specified in the action attribute, you must give the text field a name attribute and assign it a value to represent the data being submitted. For example, you could use the following syntax for an email address text field: <input type="text" name="email">.
+
+        <fieldset> (block level code.)
+            <legend>Is your cat an indoor or outdoor cat?</legend>
+            <label><input id="indoor" type="radio" name="indoor-outdoor" value="indoor"> Indoor</label>
+            <label><input id="outdoor" type="radio" name="indoor-outdoor" value="outdoor"> Outdoor</label>
+          </fieldset>
+
+The legend element acts as a caption for the content in the fieldset element. It 
+gives users context about what they should enter into that part of the form.
+
+//////////////////////////
+/// <input></input>
+
+name=""
+maxlength=""
+minlength=""
+size=""
+type=""
+value="default value for text"
+src=""
+placeholder=""
+autofocus="true"
+autocomplete="on" 
+
+input types: 
+
+label|legend|number|range|date|time|datetime-local|color|email|url|tel
+
+<input id="loving" type="checkbox"> <label for="loving">Loving</label>
+when you click on the text Loving checkbox will be selected.
+
+fieldset:last-of-type {
+  border-bottom: none;
+}
+
+// to align radio button in line with , texts.
+vertical-align: middle;
+
+To style the submit button, you can use an attribute selector, which selects an element based on the given attribute value. Here is an example:
+input[name="password"]
+
+
+
+__________________________________________________end
+__________________________________________________start
+---------------------------------------------------------
+| <figure></figure> to nest image and captions          |
+---------------------------------------------------------
+
+       <figure>
+          <img src="https://cdn.freecodecamp.org/curriculum/cat-photo-app/lasagna.jpg" alt="A slice of lasagna on a plate.">
+          <figcaption>Cats love lasagna.</figcaption>
+        </figure>
+__________________________________________________end
+__________________________________________________start
+-----------------------
+|<a></a> anchour tag  |
+-----------------------
+
+<a target="_blank" href="link">click</a>
+This will opent the link in new tab.
+__________________________________________________end
+__________________________________________________start
+-----------------------
+|     meta tag        |
+-----------------------
+
+this is to set width as of device used.
+initial-scale - when user lands on website what will be zoom level.
+
+<meta name="viewport" content="width=device-width , initial-scale=1.0" />
+
+<meta name='description' content="quize-app" />
+
+__________________________________________________end
+__________________________________________________start
+-----------------------
+| css units           |
+-----------------------
+
+EM
+// relative to parent units.
+font-size: 10em; 
+This will set 10 x its parent font size; if parent font size is changed , its font size will also changed , (10xparent)
+
+padding: 3em; 
+This will take the child font size and will be 3xchild font size.
+
+REM
+// relative to html units.
+
+VH 
+// View port height
+
+height: 100vh;
+
+VW View port width
+
+width: 100vw;
+__________________________________________________end
+__________________________________________________start
+-----------------------
+| grid layout         |
+-----------------------
+
+V2
+
+grid-auto-rows: minmax(15px , auto);
+
+grid-template-areas: 
+"header header"
+"sidebar content"
+"sidebar content"
+"footer footer";
+
+/* in the grid item */
+grid-area: header;
+
+/* the farset away column */
+grid-column-end: -1; 
+
+/* start and end at the same time */ 
+grid-column: 1 / -1; 
+
+/* using span */
+grid-column: span 2;
+
+The CSS Grid Layout Module offers a grid-based layout system, with rows and columns, making it easier to design web pages without having to use floats and positioning.
+
+HTML
+  <body>
+    <div class="grid-container">
+      <div class="grid-item header"></div>
+      <div class="grid-item"></div>
+      <div class="grid-item"></div>
+      <div class="grid-item"></div>
+      <div class="grid-item"></div>
+      <div class="grid-item"></div>
+      <div class="grid-item"></div>
+    </div>
+  </body>
+
+CSS
+
+// to automatically set row and columns.
+grid-template-columns: repeat(auto-fit , minmax(100px , 1fr));
+
+.grid-container {
+  background-color: white;
+  height: 90vh;
+
+  /* block elements */
+  display: grid;
+
+  /* inline elements */
+  /* display: inline-grid; */
+  /* 3 rows */
+  grid-template-rows: 60px 1fr 1fr;
+  /* 3 columns */
+  grid-template-columns: 1fr 1fr 1fr;
+  column-gap: 10px;
+  row-gap: 10px;
+  /* horizantal direction (for parent)*/
+  /* justify-items: start | auto | end | center; */
+
+  /* vertical direction */
+  /* align-items: ;*/
+
+  /* both in one line */
+  /* place-items: center; */
+
+  /* for childs */
+  /* justify-self: start | end | center; */
+  /* align -self: center; */
+  /* both in one line */
+  /* place-self: center; */
+}
+
+.grid-item {
+  background-color: rgb(255, 0, 0);
+}
+
+.header {
+  /*   grid-column-start: 1;
+  grid-column-end: 4; */
+
+  grid-column: 1 / span 3;
+}
+
+Create a .hero selector and give it a grid-column property set to 1 / -1. This will tell the element to span the full width of the grid.
+.hero {
+  grid-column: 1 / -1;
+}
+
+the grid-auto-flow property.
+This property takes either row or column as the first value, with an optional second value of dense. grid-auto-flow uses an auto-placement algorithm to adjust the grid layout. Setting it to column will tell the algorithm to create new columns for content as needed. The dense value allows the algorithm to backtrack and fill holes in the grid with smaller items, which can result in items appearing out of order.
+
+
+__________________________________________________end
+__________________________________________________start
+-----------------------
+| box-sizing property |
+-----------------------
+The CSS box-sizing property allows us to include the padding and border in an element's total width and height.
+
+By default, the width and height of an element is calculated like this:
+width + padding + border = actual width of an element
+height + padding + border = actual height of an element
+
+If you set box-sizing: border-box; on an element, padding and border are included in the width and height:
+
+* {
+  box-sizing: border-box;
+}
+
+__________________________________________________end
+__________________________________________________start
+-----------------------
+|    flex layout      |
+-----------------------
+- flex-grow property
+- flex-shrink property
+- flex-basis property
+- flex-direction property
+- flex-flow property
+
+// best way to center div vertically
+// direction change , means x -> y
+display:flex;
+flex-direction: column;
+justify-content-center; 
+
+Flexbox is a one-dimensional CSS layout that can control the way items are spaced out and aligned within a container.
+
+object-fit: cover;
+
+
+NOTE: display: flex; inline displaying.
+
+flex: flex-grow flex-shrink flex-basis|auto|initial|inherit;
+
+The flex property sets the flexible length on flexible items.
+
+/////////////
+// flex-grow property (inside a div)
+
+flex-grow: 1 to oo; 
+A number specifying how much the item will grow relative to the rest of the flexible items; increasing length.
+
+/////////////
+// flex-shrink property (inside a div)
+flex-shrink: 1;
+
+A number specifying how much the item will shrink relative to the rest of the flexible items; decreasing length;
+
+//////////////
+// flex-basis property	
+
+flex-basis: 150px;
+
+Changes The length of the item. Legal values: "auto", inherit", or a number followed by "%", "px", "em" or any other length unit; changes the length to 150px;
+
+//////////////
+// flex-direction property
+
+flex-direction: row|row-reverse|column|column-reverse|initial|inherit;
+
+
+flex-direction: row-reverse;
+#main {
+  width: 400px;
+  height: 400px;
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+row: Default value. The flexible items are displayed horzontally, as a row	
+
+row-reverse: Same as row, but in reverse order	
+
+column:	The flexible items are displayed vertically, as a column.
+
+column-reverse: Same as column, but in reverse order.
+
+initial: Sets this property to its default value. Read about initial.
+
+inherit: Inherits this property from its parent element.
+
+//////////////////
+// flex-flow property
+
+The flex-flow property is a shorthand property for:
+- flex-direction
+- flex-wrap
+
+flex-flow: flex-direction flex-wrap|initial|inherit;
+
+flex-wrap property determines whether the flex items should wrap to the next line if they exceed the width or height of the container.
+__________________________________________________end
+
+__________________________________________________start
+-----------------------
+| display property    |
+-----------------------
+
+display: none; 
+# removes the html element.
+
+display: inline; 
+Displays an element as an inline element (like <span>). Any height and width properties will have no effect
+
+display: block; 
+Displays an element as a block element (like <p>). It starts on a new line, and takes up the whole width
+
+display: inline-block;
+Displays an element as an inline-level block container. The element itself is formatted as an inline element, but you can apply height and width values
+
+__________________________________________________end
+
+__________________________________________________start
+-----------------------
+| div tag             |
+-----------------------
+
+-------------------->THEORY:
+ - it is a section.
+-------------------->CODE:
+__________________________________________________end
+
+[[EXTRA INFO]]
+The Referer HTTP header contains information about the address or URL of a page that a user might be visiting from. This information can be used in analytics to track how many users from your page visit freecodecamp.org, for example. Setting the rel attribute to noreferrer omits this information from the HTTP request. Give your a element a rel attribute set to noreferrer.
+
+
+[[properties]]
+border-collapse: collapse;
