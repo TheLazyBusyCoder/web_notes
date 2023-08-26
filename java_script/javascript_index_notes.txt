@@ -1,0 +1,2803 @@
+ ( A )
+- asynchronous java_script
+
+( B )
+- BigInt
+
+( C )
+- closures
+- chaining methods map/filter/reduce
+- Currying and Partial Application
+- coverting values
+
+( D )
+- data type array
+- data type object
+- destructuring array
+- destructuring object
+- data type set
+- data type map
+- data type string
+- data type number
+- date
+- DOM object
+- dataset
+
+( E )
+( F )
+- function syntax's
+- function arguments keyword
+- for of loop
+- for in loop
+- functions
+  - bind and all
+- filter method
+- flat and flatMap
+- functional programming
+
+( G )
+- geolocation API (navigator) 
+- git
+
+( H )
+( I )
+- immediately invoked function expression (IIFE)
+- Internationalizing Dates(Intl)
+- import/export
+
+( J )
+( K )
+( L )
+- link a java_script file
+- let , const , var
+- logical operators
+- logical assignment operators
+- looping objects
+- localStorage
+
+( M )
+- math
+- modal window
+- morden way of JS
+- map method 
+- Mixin
+
+( N )
+- nullish coalescing operator (??)
+
+( O )
+- optional chaining
+- OOP's
+
+( P )
+- problem's 
+
+( Q )
+( R )
+- reset operator
+- reduce method
+
+( S )
+- statements and expressions
+- spread operator
+- short circuiting (&& and ||)
+- some and every
+- sticky top bar
+
+( T ) 
+- type conversion and coercion
+- truthy and falsy values
+- ternary operator
+- templet literals (templet strings)
+- this keyword
+- timers
+
+( U )
+- use strict
+
+( V )
+( W )
+- window object
+
+( X )
+( Y )
+( Z )
+
+#--------------------------------------------------#NOTES
+__________________________________________________start
+-----------------------
+| git                 |
+-----------------------
+
+-------------------->THEORY:
+
+git init
+
+git status 
+
+.gitignore -> file to store the name of folders that we dont want to ignore.
+
+git add -A -> to add all the files.
+
+git commit -m 'some message'
+
+git reset --hard HEAD -> go back to previous commited code.
+
+git log -> history of comments 
+
+git reset --hard id
+
+git branch 
+
+// creating a new branch and working in it.
+
+git branch new-feature 
+
+git checkout new-feature 
+
+(work in this branch) 
+
+git checkout master 
+
+(now we switch back to original code)
+
+git merge new-feature
+
+////// git hub
+
+create a new reprository 
+
+git remote add origin https://github.com/TheLazyBusyCoder/codekeyboard.git
+
+git remote set-url origin https://<token>@github.com/thelazybusycoder/codekeyboard.git
+
+git remote set-url origin https://<githubtoken>@github.com/<username>/<repositoryname>.git
+
+git push origin master
+
+we can push other branch as well 
+
+git pull 'link'
+
+/// add README.md 
+
+# heading 
+discription
+
+-------------------->CODE:
+
+__________________________________________________end
+__________________________________________________start
+-----------------------
+| problem's           |
+-----------------------
+
+-------------------->CODE:
+#convert number to roman: 
+
+function convertToRoman(num) {
+  var ref = [['M', 1000], ['CM', 900], ['D', 500], ['CD', 400], ['C', 100], ['XC', 90], ['L', 50], ['XL', 40], ['X', 10], ['IX', 9], ['V', 5], ['IV', 4], ['I', 1]];
+  var res = [];
+  ref.forEach(function(p) {
+    while (num >= p[1]) {
+      res.push(p[0]);
+      num -= p[1];
+    }
+  });
+  return res.join('');
+}
+
+convertToRoman(36);
+
+__________________________________________________end
+__________________________________________________start
+-----------------------
+| coverting values    |
+-----------------------
+
+-------------------->CODE:
+#Binary to decimal: 
+let binary = [01000001,01110010,01100101,01101110,00100111,01110100,00100000,01100010,01101111,01101110,01100110,01101001,01110010,01100101,01110011,00100000,01100110,01110101,01101110,00100001,00111111];
+let decimal = Number.parseInt(binary[0] , 2);
+
+#Convert number to char's: 
+let char = String.fromCharCode(65 , 66);
+
+#string => binary => decimal => char: 
+
+function binaryAgent(str) {
+  let binary = str.split(" ");
+  binary = binary.map((e) => Number(e));
+  let decimal = [];
+  for (let i = 0; i < binary.length; i++) {
+    decimal.push(Number.parseInt(binary[i], 2));
+  }
+  str = String.fromCharCode(...decimal);
+  return str;
+}
+binaryAgent("01000001 01110010 01100101 01101110 00100111 01110100 00100000 01100010 01101111 01101110 01100110 01101001 01110010 01100101 01110011 00100000 01100110 01110101 01101110 00100001 00111111");
+
+# float to int: 
+console.log(Math.round(3.4));
+__________________________________________________end
+__________________________________________________start
+-----------------------------------
+| Currying and Partial Application|
+-----------------------------------
+
+-------------------->THEORY:
+In simple words, it restructures a function so it takes one argument, then returns another function that takes the next argument, and so on.
+ex:
+function unCurried(x, y) {
+  return x + y;
+}
+function curried(x) {
+  return function(y) {
+    return x + y;
+  }
+}
+const curried = x => y => x + y
+curried(1)(2)
+
+This is useful in your program if you can't supply all the arguments to a function at one time. You can save each function call into a variable, which will hold the returned function reference that takes the next argument when it's available. Here's an example using the curried function in the example above:
+
+ex: 
+const funcForY = curried(1);
+console.log(funcForY(2)); // 3
+-------------------->CODE:
+function add(x) {
+  return function(y) {
+    return function(z) {
+      return x + y + z;
+    }
+  }
+}
+add(10)(20)(30);
+__________________________________________________end
+__________________________________________________start
+------------------------- 
+| functional programming|
+-------------------------
+
+-------------------->THEORY:
+Functional programming is a style of programming where solutions are simple, isolated functions, without any side effects outside of the function scope: INPUT -> PROCESS -> OUTPUT
+  1) solated functions - there is no dependence on the state of the program, which includes global variables that are subject to change
+  2) Pure functions - the same input always gives the same output
+  3) Functions with limited side effects - any changes, or mutations, to the state of the program outside the function are carefully controlled
+
+Callbacks: are the functions that are slipped or passed into another function
+
+first class functions: Functions passed into another function, or returned from another function just like any other normal value.
+
+higher order functions: The functions that take a function as an argument, or return a function as a return value.
+
+lambda: When functions are passed in to or returned from another function, then those functions which were passed in or returned.
+
+Pass Arguments to Avoid External Dependence in a Function
+
+-------------------->CODE:
+Add/Remove elements in an array without changing original array:
+const bookList = [
+  "The Hound of the Baskervilles",
+  "On The Electrodynamics of Moving Bodies",
+  "Philosophiæ Naturalis Principia Mathematica",
+  "Disquisitiones Arithmeticae",
+];
+function add(bookList, bookName) {
+  let temp = [];
+  bookList.forEach((e) => temp.push(e));
+  temp.push(bookName);
+  return temp;
+}
+function remove(bookList, bookName) {
+  let temp = [];
+  const book_index = bookList.indexOf(bookName);
+  if (book_index >= 0) {
+    temp = [
+      ...bookList.slice(0, book_index),
+      ...bookList.slice(book_index + 1, bookList.length),
+    ];
+  }
+  return temp;
+}
+let temp = remove(bookList, "Disquisitiones Arithmeticae");
+console.log(temp);
+
+__________________________________________________end
+__________________________________________________start
+-----------------------
+| Mixin               |
+-----------------------
+
+-------------------->THEORY:
+ - A function that can give provided objects same method.
+
+-------------------->CODE:
+let flyMixin = function(obj) {
+  obj.fly = function() {
+    console.log("Flying, wooosh!");
+  }
+};
+
+let bird = {
+  name: "Donald",
+  numLegs: 2
+};
+
+let plane = {
+  model: "777",
+  numPassengers: 524
+};
+
+flyMixin(bird);
+flyMixin(plane);
+__________________________________________________end
+__________________________________________________start
+-----------------------
+| |
+-----------------------
+
+-------------------->THEORY:
+-------------------->OPERATIONS:
+-------------------->CODE:
+__________________________________________________end
+__________________________________________________start
+-----------------------
+| for in loop         |
+-----------------------
+-------------------->THEORY:
+ - good for traversing an object.
+ 
+-------------------->CODE:
+
+const users = {
+  Alan: {
+    online: false
+  },
+  Jeff: {
+    online: true
+  },
+  Sarah: {
+    online: false
+  }
+}
+
+function countOnline(allUsers) {
+  let count = 0;
+  for(let temp in allUsers){
+    if(allUsers[temp]['online']) count++;
+  }
+  return count;
+}
+
+console.log(countOnline(users));
+__________________________________________________end
+__________________________________________________start
+-----------------------
+| morden way of JS    |
+-----------------------
+  - import/export
+  - for using npm
+  - using parcel
+  - writing clean javaSrcipt
+  - Declerative and functional JavaScript principle
+
+-----------------------
+| import/export       |
+-----------------------
+[[NOTE: use localhost for this.]]
+
+To import we need curly braces 
+ex: import { name as nm , name_two as nm_t } from 'file_name';
+
+export {name as nm , name_two};
+
+import * as name_main from '';
+    name_main <- this is the object containing all the exports from the exporter.
+
+#default import export
+const name_1 = function (name) {
+  console.log(`hi ${name}`);
+};
+export default name_1;
+import name_1 from "./two.js";
+name_1("leo");
+
+if imported module has top level await keyword used , first the imported module will finnish getting the data , then after that second modeul will execute.
+
+////////////////////////////////
+// for using npm 
+
+npm init - to create packege.json file. (this file contails all the info of the project.)
+
+so when we do npm install leflet , this file is added to our project , and updated in the package.json file.
+
+to move our project to new computer just copy the project without the npm-module folder and then: npm i or npm install
+
+///////////////////////////
+// using parcel 
+
+npm install parcel --save-dev   
+
+1)
+npx parcel index.html (entry point)
+
+parcel will create new folder of dist , this contains all the final fils of our project.
+
+parcel converts normal code to that block of code in one line. 
+ - every thing in one file.
+
+// HOT MODEL RELODING - when we change somthing in our main code , outside the dist: without reloding the whole page it will inject the new code into the built dist.
+
+if (module.hot) {
+  module.hot.accept();
+}
+
+--- the above code only is understandable by, parcel not by the browser.
+
+if we want to include any library or any files. we just specifi the name , parcle will automaticaly find the file. 
+
+
+2) second way of building using parcel.
+
+package.json = in this there is "scripts" we can write.
+
+"scripts": {
+    "start": "parcel index.html",
+    "build": "parcel build index.html"
+}
+
+"default": "index.html"
+
+"scripts": {
+    "start": "parcel index.html",
+    "build": "parcel build index.html --dist-dir ./dist"
+}
+
+//to run it.
+npm run start (start is the name of the command which we specified in the package.json)
+npm run build index.html <- this is to build finall.
+
+// to install parcel globaly  (not recommended)
+npm install parcel -g 
+
+//Transpling code = converting ES6 to ES5 for old browser.
+but parcel does that accordingly
+//website: babeljs.io
+
+polifiling - converting advance code to ES5.
+to do so 
+
+npm install core-js
+import 'core-js/stable';  //this will create all the array functions.
+
+import 'core-js/stable/array/find'; //this will only import some funciton that we need.
+import 'core-js/stable/promise'; //only polifilling promise.
+
+code will not change only back side will be changed.
+
+for polifiling async function we need extra file.
+npm i regenerator
+import 'regenerator-runtime/runtime';
+
+////////////////////////////
+// writing clean javaSrcipt
+
+ - write to understand and to make understand by reading.
+ - descriptive variable and function name.
+ - DRY (dont repeat yourself) 
+ - use === !== more.
+
+ FUNCTIONS:
+  - function only do one thing mostly.
+  - dont use more then 3 parameters. 
+  - generally return same datatype as input to a funtion.
+  - use arrow functinos where possible.
+
+  OOP: 
+   - use ES6 classes.
+   - Encapulate (class data not accessable from outside.)
+   - dont use arrow function as methonds.
+   - use ternary operator and logical operators more then if else and nested codes. or use only if
+   - avoid for loops. use array methods.
+   - Avoid callback based asynchronouse APIs.
+
+   ASYNCHRONOUS: 
+    - ues async and await more then then and catch.
+    - whenevery can use promise.all() (making application faster).
+    - handle promise rejections.
+
+
+///////////////////////////////////////////////////
+// Declerative and functional JavaScript principle
+
+imperative: we explain the computer every single step it has to follow to achive a result. (how to do)
+ex: step by step process to make an cake.
+
+const arr = [1,2,3,4];
+const double = [];
+for(let i = 0; i < arr.length; i++) 
+  double[i] = arr[i] * 2;
+
+(morden way) declarative: we simple describe the way the computer should achive the result.  (what to do)
+ex: tell the person to make an cake , and he will make his own cake. and give
+
+const arr = [1,2,3,4];
+const double = arr.map(el => el * 2);
+
+side effects: function depending on external varialbes. if we change the external variable , the function will not work properly.
+
+pure function: function without side effects, doesnot depend on external variables. given the same input will give the same output.
+
+immutability: original object is never changed but using it we modify it and return the modified object.
+.map() , .filter() , .reduce()
+
+use array/object destructuring && use spread operator ... && use ternary operator && use templet leterals.
+
+TO MAKE OBJECTS AND ARRAY IMMUTABLE.
+
+const data = new Object.freeze({
+  name: "leo",
+  age: 19,
+});
+
+const data = new Object.freeze(['leo' , 19]); 
+
+// now we cannot add new properties to data.
+// Object.freeze() <- not deep freeze only first level.
+
+returning copy of previous array , with 1 new element. 
+return [...data , new_element]; 
+
+__________________________________________________end
+__________________________________________________start
+----------------------------
+| asynchronous java_script |
+----------------------------
+- USING AJAX CALL :XMLHttpRequest.
+- FETCH FUNCTION
+- CREATING PROMISE
+- Promisifying_the_Geolocation_API
+- Consuming Promises with Async/Await
+- Running Promises in Parallel Promise.all([p1,p2,p3]);
+- Other Promise Combinators: race, allSettled and any
+
+
+-------------------->CODE:
+
+#USING AJAX CALL :XMLHttpRequest.
+(Do AJAX call with getting the data.)
+<script>
+      "use strict";
+      const request = new XMLHttpRequest();
+      request.open("GET", `https://api.publicapis.org/entries`);
+      request.send();
+      request.addEventListener("load", function () {
+        const data = JSON.parse(this.responseText);
+        const { entries } = data;
+        const { API: name, Category, Description } = entries[0];
+        console.log(name, Category, Description);
+      });
+    </script>
+
+#CALLBACK HELL
+setTimeout(() => {
+  console.log('1 second passed');
+  setTimeout(() => {
+    console.log('2 seconds passed');
+    setTimeout(() => {
+      console.log('3 second passed');
+      setTimeout(() => {
+        console.log('4 second passed');
+      }, 1000);
+    }, 1000);
+  }, 1000);
+}, 1000);
+
+#FETCH FUNCTION
+<script>
+  "use strict";
+  fetch(`https://api.publicapis.org/entries`)
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (data) {
+      console.log(data);
+    });
+</script>
+
+#to throw an error if not good. and catch it.
+.then(response => {
+      if (!response.ok)
+        throw new Error(`Country not found (${response.status})`);
+      return response.json();
+}).catch(err => {
+  console.error('error');
+}).finally(() => {
+  console.log('promise settled');
+})
+// finally will run if the promise is settled fullfiled/rejected.
+
+getJSON(
+  `https://api.publicapis.org/entries`,
+  'Country not found'
+).then(()=>{}).catch((err)=>{}).fiannly(()=>{});
+
+#Promise with executed get into the microqueue, not in the call back queue. micro > callback.
+
+setTimeout(() => console.log('0 sec timer'), 0);
+#creating a promise and immediately resolving it.
+Promise.resolve('Resolved promise 1').then(res => console.log(res)); //Resolved promise 1
+
+CREATING PROMISE:
+const doing = new Promise(function(resolve , reject) {
+  setTimeout(function(){
+    if (Math.random() >= 0.5) resolve('You WIN');
+    else reject(new Error('You Lost'));
+  } , 2000)
+})
+
+USING PROMISE:
+doing_done.then(response => console.log(res)).catch(err => console.error(err));
+
+#Promisifying setTimeout (sending it to asynchronous block)
+const wait = function (seconds) {
+  return new Promise(function (resolve) {
+    setTimeout(resolve, seconds * 1000);
+  });
+};
+wait(1)
+  .then(() => {
+    console.log('1 second passed');
+    return wait(1);
+  })
+  .then(() => {
+    console.log('2 second passed');
+    return wait(1);
+  })
+  .then(() => {
+    console.log('3 second passed');
+    return wait(1);
+  })
+  .then(() => console.log('4 second passed'));
+
+// above is better then call back hell.
+
+#Promisifying_the_Geolocation_API
+
+const getPosition = function () {
+  return new Promise(function (resolve, reject) {
+    navigator.geolocation.getCurrentPosition(
+      position => resolve(position),
+      err => reject(err)
+    );
+    //navigator.geolocation.getCurrentPosition(resolve, reject);
+  });
+};
+
+const whereAmI = function () {
+  getPosition()
+    .then(pos => {
+      const { latitude: lat, longitude: lng } = pos.coords;
+
+      return fetch(`https://geocode.xyz/${lat},${lng}?geoit=json`);
+    })
+    .then(res => {
+      if (!res.ok) throw new Error(`Problem with geocoding ${res.status}`);
+      return res.json();
+    })
+    .then(data => {
+      console.log(data);
+      console.log(`You are in ${data.city}, ${data.country}`);
+
+      return fetch(`https://restcountries.eu/rest/v2/name/${data.country}`);
+    })
+    .then(res => {
+      if (!res.ok) throw new Error(`Country not found (${res.status})`);
+
+      return res.json();
+    })
+    .then(data => renderCountry(data[0]))
+    .catch(err => console.error(`${err.message} 💥`));
+};
+
+#Consuming Promises with Async/Await
+#Error Handling With try...catch
+async = when there is some asynchronous function we want to execute.
+await = when we want to wait for some code to arrive in our functin from api.
+
+
+const getPosition = function () {
+  return new Promise(function (resolve, reject) {
+    navigator.geolocation.getCurrentPosition(
+      position => resolve(position),
+      err => reject(err)
+    );
+  });
+};
+
+getLocation()
+        .then((data) => {
+          console.log(data);
+        })
+        .catch((err) => {
+          console.log("user denied");
+        });
+
+ANOTHER ways
+const whereAmI = async function() {
+  try {
+    //[[[NOTE]]] getting current location
+    const pos = await getPosition();
+    const { latitude: lat , longitude: lng } = pos.coords;
+
+    //[[[NOTE]]] using of await in fetch
+    const resGeo = await fetch(`https://geocode.xyz/${lat},${lng}?geoit=json`);
+    if (!resGeo.ok) throw new Error('Problem getting location data');
+
+    //[[[NOTE]]] converting data to object 
+    const dataGeo = await resGeo.json();
+    console.log(dataGeo);
+
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+(async function () {
+  try {
+    const city = await whereAmI();
+    console.log(`2: ${city}`);
+  } catch (err) {
+    console.error(`2: ${err.message} 💥`);
+  }
+  console.log('3: Finished getting location');
+})();
+
+///////////////////////////////////////
+// Running Promises in Parallel Promise.all([p1,p2,p3]);
+- if any one promise rejects , all is rejected.
+
+    <script>
+      "use strict";
+      const getJSON = function (url, errorMsg = "Something went wrong") {
+        return fetch(url).then((response) => {
+          if (!response.ok) throw new Error(`${errorMsg} (${response.status})`);
+          return response.json();
+        });
+      };
+      const get3meanings = async function (w1, w2, w3='dfadsfa') {
+        try {
+          const data = await Promise.all([
+            getJSON(`https://api.dictionaryapi.dev/api/v2/entries/en/${w1}`),
+            getJSON(`https://api.dictionaryapi.dev/api/v2/entries/en/${w2}`),
+            getJSON(`https://api.dictionaryapi.dev/api/v2/entries/en/${w3}`),
+          ]);
+
+          data.map((ele) => {
+            console.log(
+              ele[0].word,
+              ":",
+              ele[0].meanings[0].definitions[0].definition
+            );
+          });
+        } catch (err) {
+          console.error(err);
+        }
+      };
+      get3meanings("hi", "bye", "die");
+    </script>
+
+// Other Promise Combinators: race, allSettled and any
+
+// Promise.race (first promise to get resolve will be output)
+
+const timeout = function (sec) {
+  return new Promise(function (_, reject) {
+    setTimeout(function () {
+      reject(new Error('Request took too long!'));
+    }, sec * 1000);
+  });
+};
+
+Promise.race([
+  getJSON(`https://api.dictionaryapi.dev/api/v2/entries/en/leo`),
+  timeout(5),
+])
+  .then(res => console.log(res[0]))
+  .catch(err => console.error(err));
+
+// Promise.allSettled
+Promise.allSettled() - is a method that takes an array of promises and returns a promise that is fulfilled with an array of result objects. Each result object represents the outcome of the corresponding promise in the input array, whether it fulfilled or rejected.
+
+Promise.allSettled([
+  Promise.resolve('Success'),
+  Promise.reject('ERROR'),
+  Promise.resolve('Another success'),
+]).then(res => console.log(res));
+
+// Promise.any - it will only return successful promise.
+Promise.any() is a method introduced in ECMAScript 2021 that takes an iterable of promises and returns a new promise that is fulfilled as soon as any of the promises in the iterable fulfills. It will not wait for all the promises to fulfill or reject like Promise.all() or Promise.allSettled(), but rather it will resolve as soon as the first promise fulfills.
+
+Promise.any([
+  Promise.resolve('Success'),
+  Promise.reject('ERROR'),
+  Promise.resolve('Another success'),
+])
+  .then(res => console.log(res))
+  .catch(err => console.error(err));
+
+
+__________________________________________________end
+__________________________________________________start
+-----------------------
+| localStorage        |
+-----------------------
+
+-------------------->THEORY:
+  - storing data to local storage. 
+  
+-------------------->CODE:
+/* 
+      #To add objects to localStorage with key and value.
+      #setItem() 1p = keyname 2p = data to store in the form of string. to view application -> storage.
+      JSON.stringify <- to convert objects to strings.
+*/
+localStorage.setItem('key_name' , JSON.stringify({name: 'leo' , age: 19,}));
+
+/*
+  #To get data from localStorage.
+  #JSON.parse <- convert string to objects.
+*/
+const data = JSON.parse(localStorage.getItem('key_name'));
+
+#To remove item from localStorage.
+localStorage.removeItem('key_name');
+__________________________________________________end
+__________________________________________________start
+----------------------------------
+| geolocation API (navigator)    |
+----------------------------------
+
+-------------------->THEORY:
+/*
+leaflet library is used for maps in javaScript. (use the hosted version on the website . )
+ - when we include scripts they share variables.
+    - go to the documentation (docs) fon the leaflet website.
+
+*/
+-------------------->CODE:
+// TO USE NAVIGATOR TO GET GEO LOCATION
+    <script>
+      "use strict";
+      if (navigator.geolocation)
+        navigator.geolocation.getCurrentPosition(
+          function (position) {
+            const { latitude } = position.coords;
+            const { longitude } = position.coords;
+            console.log(
+              `https://www.google.com/maps/@${latitude},${longitude}`
+            );
+          },
+          function () {
+            alert("Could not get your location");
+          }
+        );
+    </script>
+
+__________________________________________________end
+__________________________________________________start
+-----------------------
+| OOP's               |
+-----------------------
+ - constructor function
+ - ES6 Classes
+ - Object.create()
+-------------------->THEORY:
+#Abstraction 
+- hiding details of main function and using basic function for input and output. 
+- creating main code logic in the main class , and child class normal function to give input to that main function.
+
+#Encapsulation
+- crateing private method inside class. (private)
+- prevents external code from accidentally manipulating internal properties/state
+
+#Inheritance
+- Admin -> User; child class extends parent class , with its own function and data.
+
+#Polymorphis
+- overwriting parent methods , in the child class.
+
+
+-----------------------
+1) constructor function
+-------------------->CODE:
+/* 
+A constructor function that inherits its prototype object from a supertype constructor function can still have its own methods in addition to inherited methods.
+*/
+const Person = function (firstName) {
+  this.firstName = firstName;
+};
+const leo = new Person('leo');
+
+#when_new_keyword_is_used.
+1. New {} is created
+2. function is called, this = {} this points to the object.
+3. {} linked to prototype
+4. function automatically return the object {}
+
+console.log(jonas instanceof Person); // true/false
+
+#static_funcition.
+Person.hey = function () {
+  console.log('Hey there 👋');
+  console.log(this);
+};
+
+#to_set_functions
+Person.prototype.print_name = function () {
+  console.log(this.firstName);
+};
+leo = new Person("leo");
+leo.print_name();
+leo.__proto__
+
+#to_check_if_prototype_or_not
+console.log(Person.prototype.isPrototypeOf(leo)); //true
+
+#to_set_properties
+Person.prototype.species = 'Homo Sapiens';
+
+#to_check_if_property_is_obj's_its_self_or_of_the_prototype.
+console.log(leo.hasOwnProperty('firstName')); //false
+
+#the top most prototype is Object.prototype <- every object is created by this.
+
+console.log(jonas.__proto__.__proto__); //will point to Object which has , hasOwnProperty method.
+
+console.dir(Person.prototype.constructor); //this will point back to person it self.
+
+#using .prototype we can set custom function to language defined objects.
+ex: Array.prototype.leo_print = //code.
+
+INHERITANCE BETWEEN C.F 
+
+const Human = function (firstName) {
+  this.firstName = firstName;
+};
+
+Human.prototype.print_name = function () {
+  console.log(this.firstName);
+};
+
+#Inheritance.....
+#we are using this , so that this keyword is set to the student class.
+
+const leo = function (firstName, birthYear) {
+  //changes in person can now reflect in student.
+  // .call() function is used to bind (visit functions).
+  Human.call(this, firstName);
+  this.birthYear = birthYear;
+};
+
+Linking prototypes
+defining prototypes manualy
+
+this is just so that , leo object should get access to Human properties.
+
+Important.
+leo.prototype = Object.create(Human.prototype);
+
+leo.prototype.introduce = function () {
+  console.log(`My name is ${this.firstName} and I am ${this.birthYear} old`);
+};
+
+const leo = new leo('leo', 2020);
+
+//So that newly created object should point to Student.
+Student.prototype.constructor = Student;
+console.dir(Student.prototype.constructor);
+
+#Iterate Over All Properties
+function Dog(name) {
+  this.name = name;
+}
+Dog.prototype.numLegs = 4;
+let beagle = new Dog("Snoopy");
+let ownProps = [];
+let prototypeProps = [];
+for(let prop in beagle) {
+  if(beagle.hasOwnProperty(prop)){
+    ownProps.push(prop);
+  } else {
+    prototypeProps.push(prop);
+  }
+}
+
+-----------------------
+2) ES6 Classes (same as constructor functions with some sugar syntax)
+-------------------->CODE:
+class Human {
+  constructor(first_name , id) {
+    this.first_name = first_name;
+    this.id = id;
+  }
+  // Instance methods
+  // Methods will be added to .prototype property
+  print_name() {
+    console.log(this.first_name);
+  }
+
+  #Set_a_property_that_already_exists; fullName_exists_so_we use_fullName.
+  set fullName(name) {
+    this.first_name = name;
+  }
+
+  get fullName() {
+    return this.frist_name;
+  }
+
+  #Static_method_only_accessable_from_main_classes / c.f not from its prototype.
+  static hey() {
+    console.log('Hey there 👋');
+    console.log(this);
+  }
+}
+
+const leo = new Human('leo', 1122233);
+leo.print_name(); //this will work.
+
+#for_getters_and_setters_the_function_directily_calculate's_and_gives_answers;
+ex:
+console.log(leo.fullName); <- not calling but it will work.
+
+#Classes are first-class citizens; we can pass them to functions , and can return them from functions.
+#Classes are executed in strict mode
+
+#getters_and_setters_can_have_same_name_as_variable_name.
+
+const account = {
+  owner: 'Jonas',
+  movements: [200, 530, 120, 300],
+
+  get latest() {
+    return this.movements.slice(-1).pop();
+  },
+
+  set latest(mov) {
+    this.movements.push(mov);
+  },
+};
+
+#this_is_how_to_use_it_we_use_it_as_a_property;
+console.log(account.latest);
+
+#THIS is how to use setter.
+account.latest = 50;
+console.log(account.movements);
+
+#INHERITANCE BETWEEEN "CLASSES": ES6 CLASSES
+class PersonCl {
+  constructor(fullName, birthYear) {
+    this.fullName = fullName;
+    this.birthYear = birthYear;
+  }
+  calcAge() {
+    console.log(2037 - this.birthYear);
+  }
+  greet() {
+    console.log(`Hey ${this.fullName}`);
+  }
+  get age() {
+    return 2037 - this.birthYear;
+  }
+  set fullName(name) {
+    if (name.includes(' ')) this._fullName = name;
+    else alert(`${name} is not a full name!`);
+  }
+  get fullName() {
+    return this._fullName;
+  }
+  static hey() {
+    console.log('Hey there 👋');
+  }
+}
+
+//extends keyword is used.
+class StudentCl extends PersonCl {
+  constructor(fullName, birthYear, course) {
+    // Always needs to happen first!
+    //super() <- constructor function of parent class.
+    super(fullName, birthYear);
+    this.course = course;
+  }
+  introduce() {
+    console.log(`My name is ${this.fullName} and I study ${this.course}`);
+  }
+  calcAge() {
+    console.log(
+      `I'm ${
+        2037 - this.birthYear
+      } years old, but as a student I feel more like ${
+        2037 - this.birthYear + 10
+      }`
+    );
+  }
+}
+const martha = new StudentCl('Martha Jones', 2012, 'Computer Science');
+martha.introduce();
+martha.calcAge();
+
+//ANOTHER CLASS EXAMPLE
+
+class Account {
+  constructor(owner , currency , pin) {
+    this.owner = owner;
+    this.currency = currency;
+    this.pin = pin;
+
+    //we can also do.
+    this.movements = [];
+    this.locale = navigator.language;
+
+    console.log("Thanks for opening an account");
+
+    //Public interface of our object.
+    deposit(val) {
+      this.movements.push(val);
+    }
+
+    withdraw(val) {
+      this.deposit(-val);
+    }
+  }
+}
+
+const acc1 = new Account('Jonas' , 'EUR' , 1111);
+acc1.deposit(250);
+acc1.withdraw(140);
+
+
+///////////////////////////////////////
+// Encapsulation: Protected Properties and Methods
+
+// we do this _moments just so that me and my team knows not to mess with this property (protected);
+
+// declare variables like this.
+#movements = [];
+#pin;
+
+//for protected methods.
+_leo() {
+
+}
+
+#static leo  = "name"; we can do this to set static variable; this variable will be only accessable by the real object.
+
+-----------------------
+3) Object.create() - this is actually creating the prototype from(object);
+-------------------->CODE:
+
+const HumanProto = {
+  print_name() {
+    console.log(this.firstName);
+  },
+
+  init(firstName) {
+    this.firstName = firstName;
+  },
+};
+const leo = Object.create(HumanProto);
+leo.init('leo');
+console.log(leo);
+leo.name = 'eleven';
+leo.print_name();
+console.log(steven.__proto__ === PersonProto);
+
+#INHERITANCE BETWEEN "CLASSES": OBJECT.CREATE
+const PersonProto = {
+  calcAge() {
+    console.log(2037 - this.birthYear);
+  },
+
+  init(firstName, birthYear) {
+    this.firstName = firstName;
+    this.birthYear = birthYear;
+  },
+};
+
+//this is all for linking
+const StudentProto = Object.create(PersonProto);
+StudentProto.init = function (firstName, birthYear, course) {
+  //connecting variables from parent.
+  PersonProto.init.call(this, firstName, birthYear);
+  this.course = course;
+};
+
+StudentProto.introduce = function () {
+  console.log(`My name is ${this.firstName} and I study ${this.course}`);
+};
+
+const jay = Object.create(StudentProto);
+jay.init('Jay', 2010, 'Computer Science');
+jay.introduce();
+jay.calcAge();
+
+
+__________________________________________________end
+__________________________________________________start
+-----------------------
+| window object       |
+-----------------------
+
+-------------------->CODE:
+#to_get_current_scroll 
+console.log('Current scroll (X/Y)', window.pageXOffset, window.pageYOffset);
+
+#to_get_the_height_and_width_of_current_view_port
+console.log(
+    'height/width viewport',
+    document.documentElement.clientHeight,
+    document.documentElement.clientWidth
+);
+
+#to_scroll_to_a_perticular_position
+window.scroolTo(333 , 333);
+
+#we_can_also_pass_an_object
+ window.scrollTo({
+   left: s1coords.left + window.pageXOffset,
+   top: s1coords.top + window.pageYOffset,
+   behavior: 'smooth',
+ });
+
+
+// To open new window; 
+https://www.w3schools.com/jsref/met_win_open.asp
+const win = window.open(
+          "",
+          "_blank",
+          "titlebar=no,top=500,left=500,width=400,height=400"
+        );
+        win.document.head.title = "fuck off";
+
+
+__________________________________________________end
+__________________________________________________start
+-----------------------
+| modal window        |
+-----------------------
+
+-------------------->THEORY:
+    - popup with blurry background.
+
+-------------------->CODE:
+const openModal = function (e) {
+  e.preventDefault();
+  modal.classList.remove('hidden');
+  overlay.classList.remove('hidden');
+};
+
+const closeModal = function () {
+  modal.classList.add('hidden');
+  overlay.classList.add('hidden');
+};
+
+btnsOpenModal.forEach(btn => btn.addEventListener('click', openModal));
+
+btnCloseModal.addEventListener('click', closeModal);
+overlay.addEventListener('click', closeModal);
+
+document.addEventListener('keydown', function (e) {
+  if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
+    closeModal();
+  }
+});
+
+__________________________________________________end
+__________________________________________________start
+-----------------------
+| sticky top bar      |
+-----------------------
+    - Intersection Observer API
+
+-------------------->THEORY:
+when we reach a certian point the top bar should float at the top.
+
+
+-------------------->CODE:
+(not good version)
+const initialCoords = section1.getBoundingClientRect();
+window.addEventListener('scroll', function () {
+  if (window.scrollY > initialCoords.top) nav.classList.add('sticky');
+  else nav.classList.remove('sticky');
+});
+
+
+----------------------------------
+| Intersection Observer API      |
+----------------------------------
+#when i will use this in my project , i will write more here.
+
+-------------------->CODE:
+
+const obsCallback = function (entries, observer) {
+  entries.forEach(entry => {
+    console.log(entry);
+  });
+};
+
+const obsOptions = {
+  root: null,
+  threshold: [0, 0.2],
+};
+
+const observer = new IntersectionObserver(obsCallback, obsOptions);
+observer.observe(section1);
+
+__________________________________________________end
+__________________________________________________start
+-----------------------
+| dataset             |
+-----------------------
+-------------------->CODE:
+<img data-version-number='3.0' />
+logo.dataset.versionNumber      //to access it
+
+__________________________________________________end
+__________________________________________________start
+-----------------------
+| DOM object          |
+-----------------------
+    - document style
+    - document class list
+    - document get_set
+    - document event listner
+    - document create elements
+    - DOM Traversing
+
+--------------------
+| - DOM Traversing |
+--------------------
+-------------------->CODE:
+console.log(h1.childNodes); //we get a nodeList with everything. (notes , text , comments).
+
+console.log(h1.children); //gives an HTML collections.
+
+element.firstElementChild.style.color = 'white'; // for first child.
+
+elemetn.lastElementChild.style.color = 'orangered'; // for last child.
+
+#Going_upwards: parents
+console.log(h1.parentNode);     //gives the whole parent node.
+console.log(h1.parentElement);  //same
+
+element.closest('.header').style.background = 'var(--gradient-secondary)'; //this will go (un-deep) upwards and find the parent.
+
+#Going_sideways: siblings
+console.log(h1.previousElementSibling);
+console.log(h1.nextElementSibling);
+
+console.log(h1.previousSibling);
+console.log(h1.nextSibling);
+
+console.log(h1.parentElement.children);
+
+#moveing up to parentELement and accessing all the children. (including itself).
+
+// output:- HTML collection.
+[...h1.parentElement.children].forEach(function (el) {
+  if (el !== h1) el.style.transform = 'scale(0.5)';
+});
+
+
+--------------------
+| - document style |
+--------------------
+-------------------->THEORY:
+    - setting css
+
+-------------------->CODE:
+document.querySelector('class_name').style.width = '30px';
+document.querySelector('class_name').style.backgroundColor = 'red';
+
+#all_of_the_css_propertes_of_message_element.
+console.log(getComputedStyle(dom_element));
+const color = getComputedStyle(message).color
+
+#to_insert_multiple_node_of_same_element._copy_bro.
+header.append(message.cloneNode(true));
+
+#to_append_element_after_a_node
+name.append(name.cloneNode(true));
+
+#css_variables
+:root {
+  --color-primary: "red";
+}
+#to_use_this_we_use
+color: var( --color-primary );
+
+#to_change_value_of_that_variable_inside_JS_we_use_this
+document.documentElement.style.setProperty('--color-primary', 'orangered');
+
+#attributes
+#to_get_href
+link.href
+
+#to_get_class_attribute
+console.log(logo.className)
+
+#to_get_custom_attribute_that_we_have_set.
+element.getAttribute('designer');
+
+#to_create_an_attribute_in_the_element.
+logo.setAttribute('company', 'Bankist');
+
+-------------------------
+| - document class list |
+-------------------------
+-------------------->THEORY:
+ - to add classes and remove it.
+ 
+-------------------->CODE:
+elemnt.classList.add("hello");
+.add('.class_name'); <- to add class.
+.remove('.class_name'); <- to remove class.
+.toggle('.class_name'); <- if has remove if dont have add.
+
+document.querySelector('.class_name').classList.add('class_name');
+
+----------------------------
+| - document event listner |
+----------------------------
+-------------------->THEORY:
+e contains the information of the event.
+
+
+// ele_one , ele_two , ele_one = child of ele_two
+______________
+| _________   |
+| |ele_one|   |
+| |_______|   |
+|_____ele_two_|
+
+//events happing on ele_one will also happen on ele_two (automatically.)
+//events happning on ele_two will only happen on ele_two 
+// e <- is same for all elements.
+
+
+document.querySelector('.nav').addEventListener('click', function (e) {
+  this.style.backgroundColor = randomColor();
+  console.log('NAV', e.target, e.currentTarget);
+} , true);
+
+// if we pass true as 3rd argument , capturing happens
+// capturing = from root to target, 
+// bubbling = from target to root. ^
+
+
+-------------------->CODE:
+# 'onchange' to monitor select.
+
+
+#page_navigation
+# <- is used for navigation.
+document.querySelector('.nav__links').addEventListener('click', function (e) {
+  e.preventDefault();
+  // Matching strategy (checking if element has nav__link class.)
+  if (e.target.classList.contains('nav__link')) {
+    const id = e.target.getAttribute('href');
+    document.querySelector(id).scrollIntoView({ behavior: 'smooth' });
+  }
+});
+
+document.querySelector('.class_name').addEventListner('click', function(e) {
+        console.log('hello');
+});
+
+#code_to_log_all_the_key_pressed_on_the_website
+document.addEventListener('keydown' , function(e) {
+     console.log(e.key); 
+})
+
+#to_remove_eventListner
+element.removeEventListener('mouseenter', function_to_remove)
+
+#this_pointer_will_point_to_the_element_which_events_happens
+this.style.backgroundColor = "red";
+
+#Stop_propagation_(to_stop_click_function_from_child_to_parent)
+e.stopPropagation();
+
+#code_after_the_DOM_is_loaded.
+document.addEventListener('DOMContentLoaded', function (e) {
+  console.log('HTML parsed and DOM tree built!', e);
+});
+
+#trigerred_when_external_resources_is_loaded. (images , css)
+window.addEventListener('load', function (e) {
+  console.log('Page fully loaded', e);
+});
+
+#when_user_try_to_close_the_tab.
+#this is give a popup before leaving
+window.addEventListener('beforeunload', function (e) {
+  e.preventDefault();
+  console.log(e);
+  e.returnValue = '';
+});
+
+#this_will_give_the_position/cordinates_of_button_that_is_clicked.
+console.log(e.target.getBoundingClientRect());
+
+#scrolling_to_perticular_location_in_document
+btnScrollTo.addEventListener('click', function (e) {
+  destination_element.scrollIntoView({ behavior: 'smooth' });
+});
+
+----------------------
+| - document get_set |
+----------------------
+-------------------->CODE:
+document.documentElement
+document.head
+document.body
+
+GETTING:
+let html = document.querySelector('.class_name');
+let array_of_elements = document.querySelectorAll('.common_class_name'); //this will return a node list
+
+//To get element by ID.
+document.getElementById('id_name');
+document.querySelector('#id_name');
+
+SETTING:
+let test = document.querySelector('.class_name').textContent;
+document.querySelector('.xyz').innerHTML = "<p>hi</p>";
+
+#this_is_to_get_input_field_value
+let value = document.querySelector('.class_name').value;
+
+document.getElementsByClassName('btn'); 
+    - this will return html collection(array) of elements
+    - HTMLCollectinos keeps updating. as we change the elemnts.
+
+-----------------------------------
+| - document create elements      |
+-----------------------------------
+
+-------------------->CODE:
+#to_create_dom_element.
+const message = document.createElement('div');
+
+#create_element_and_append_it
+document.body.append(document.createElement('textarea'));
+document.body.append(document.createElement('button'));
+
+#insert_element_adjecent
+document.querySelector('.xyz').insertAdjacentHTML('afterbegin' , `<p> ${name} </p>`);
+
+USE:
+html += `
+        <div class="workout__details">
+        <span class="workout__icon">🚴‍♀️</span>
+        <span class="workout__value">${workout.speed.toFixed(1)}</span>
+        <span class="workout__unit">km</span>
+      </div>
+      <div class="workout__details">
+        <span class="workout__icon">⏱</span>
+        <span class="workout__value">${workout.elevation}</span>
+        <span class="workout__unit">min</span>
+      </div>
+        `;
+form.insertAdjacentHTML('afterend', html);
+
+#to_append_element_at_the_end
+header.append(message); 
+
+#to_remove_an_element
+message.remove();
+
+#to_remove_adjecent_element
+message.parentElement.removeChild(message);
+
+__________________________________________________end
+__________________________________________________start
+-----------------------
+| timers              |
+-----------------------
+
+-------------------->THEORY:
+ - setTimeout (runs one time.)
+ - first argument = call-back function.
+ - second argument = time interval.
+ - third argument = first parameter of call back function.
+ - fourth argument = second parameter of call back function.
+
+
+-------------------->OPERATIONS:
+-------------------->CODE:
+const name = ['leo' , 'eleven'];
+const fun = function(ing_1 , ing_2) {
+    console.log(`${ing_1} ${ing_2}`);
+}
+const pizzaTimer = setTimeout(fun , 3000 , ...name);
+
+__________________________________________________end
+__________________________________________________start
+-----------------------------------
+| Internationalizing Dates(Intl)  |
+-----------------------------------
+
+-------------------->THEORY:
+ - Date can be represented accordng to user , like country region etc.
+ - Iso language code table , for different format date's format.
+
+-------------------->OPERATIONS:
+-------------------->CODE:
+#to get user user language. 
+const local = navigator.language;
+
+#we pass a object with options. 
+options = {
+  hour: 'numberic',
+  minute: 'numeric', 
+  day: 'numberic',
+  month: 'numeric',
+  weekday: 'long',
+}
+#month = 'numberic' => 12 => 'long' = November. => '2-digit' => 12 
+#short , narrow
+
+let intl_date = new Intl.DateTimeFormat('en-US' , options).format(//date);
+__________________________________________________end
+__________________________________________________start
+-----------------------
+| date                |
+-----------------------
+
+-------------------->THEORY:
+format: 
+year , month (0 to 11), date , hours , min , second. 
+
+-------------------->OPERATIONS:
+const future = new Date(2037, 10, 19, 15, 23);
+
+#getting.
+console.log(future.getFullYear());
+console.log(future.getMonth());
+console.log(future.getDate());
+console.log(future.getDay());
+console.log(future.getHours());
+console.log(future.getMinutes());
+console.log(future.getSeconds());
+console.log(future.toISOString());
+console.log(future.getTime()); //get milliseconds
+
+#setting.
+future.setFullYear(2040);
+
+-------------------->CODE:
+console.log(new Date()); //current time
+
+console.log(new Date('September 17 2003')); //to create date.
+
+console.log(new Date(2037, 10, 19, 15, 23, 5));
+
+#days_to_miliseconds.
+console.log(new Date(3 * 24 * 60 * 60 * 1000));
+
+#miliseconds_to_date.
+console.log(new Date(2142256980000));
+
+//to get current time stamp.
+console.log(Date.now()); 
+
+#convert date to number.
+console.log(Number(any_date_variable));
+console.log(+any_date_variable);
+
+//to convert a date to number of daesys.
+const calcDaysPassed = (date1, date2) =>
+  Math.abs(date2 - date1) / (1000 * 60 * 60 * 24); 
+
+__________________________________________________end
+__________________________________________________start
+-----------------------
+| BigInt              |
+-----------------------
+
+-------------------->THEORY:
+ - 64 bit , 53 used for digits.  rest for sign's
+ - console.log(2 ** 53 - 1); //the biggest number jS can store.
+ - console.log(Number.MAX_SAFE_INTEGER);
+
+-------------------->OPERATIONS:
+-------------------->CODE:
+
+console.log(4838430248342043823408394839483204n); // n for bigint
+__________________________________________________end
+__________________________________________________start
+-----------------------
+| data type number    |
+-----------------------
+
+-------------------->THEORY:
+- in js numbers are stored in binary.
+
+-------------------->OPERATIONS:
+#convert_string_to_number.
+console.log(+'5');
+console.log(Number('5'));
+
+#get_number_from_string. (string should start with the nubmer)
+console.log(Number.parseInt('30px', 10)); 2p = base system.
+console.log(Number.parseFloat('  2.5rem  '));
+
+#check_if_value_is_NaN (not a number)
+console.log(Number.isNaN(20));
+console.log(Number.isNaN(+'20X')); //true
+
+checking_if_value_is_number (finite)
+console.log(Number.isFinite(20));
+console.log(Number.isInteger(23));
+
+-------------------->CODE:
+__________________________________________________end
+__________________________________________________start
+-----------------------
+| flat and flatMap    |
+-----------------------
+
+-------------------->THEORY:
+ - .flat(1) - get a new array with all the sub values mix together.  [[1,2] , 3 , [4 ,5]] => [1,2,3,4,5]; flat() 1_p - how much deep to go.
+
+- .flatMap() - mix of map() + flat()
+
+-------------------->OPERATIONS:
+-------------------->CODE:
+#flat
+const obj_one = {
+    x: [1,2,3,4],
+}
+const obj_two = {
+    x: [1,2,3,4],
+}
+const obj_three = {
+    x: [1,2,3,4],
+}
+const all_obj = [obj_one , obj_two , obj_three];
+const sum_of_all_value = all_obj.map(val => val.x).flat().reduce((acc , val)=> acc + mov , 0);
+
+#flat_map
+const sum_of_all_value = all_obj.flatMap(val => val.x).reduce((acc , val) => acc + mov , 0);
+
+__________________________________________________end
+__________________________________________________start
+-----------------------
+| some and every      |
+-----------------------
+
+-------------------->THEORY:
+ - some() will return true if atleast one condition is satisfied.
+ - every() will return tue if all of the array element should satisfy the condition.
+
+-------------------->OPERATIONS:
+-------------------->CODE:
+#.some()
+const x = [1,2,3,4,5];
+console.log(x.some(val => val < 2));
+
+#.every()
+console.log(x.every(val => val > 5));
+__________________________________________________end
+__________________________________________________start
+--------------------------------------
+| chaining methods map/filter/reduce |
+--------------------------------------
+
+-------------------->THEORY:
+ - applying multiple methods. 
+
+-------------------->OPERATIONS:
+-------------------->CODE:
+const my_array = [1,2,3,4,5,6,7,8,9,10];
+const my_array_two = my_array.filter(val => val < 5).map(val => val * 10).reduce((acc , val) => acc += val , 0);
+
+__________________________________________________end
+__________________________________________________start
+-----------------------
+| reduce method      |
+-----------------------
+
+-------------------->THEORY:
+ - returns only one value.
+
+-------------------->OPERATIONS:
+-------------------->CODE:
+let my_array = [1,2,3,4,5];
+let sum = my_array.reduce(function(acc , cur , i , arr){
+        return acc + cur;
+} , 0 ); reduce() 2_p <- accumulator initial value.
+
+__________________________________________________end
+__________________________________________________start
+-----------------------
+| filter method       |
+-----------------------
+
+-------------------->THEORY:
+ - filters the current element in the array , and creates a new array.
+
+-------------------->OPERATIONS:
+-------------------->CODE:
+let x = [1,-2,3,-4];
+let y = x.filter(function(val , i , arr){ return val > 0; }); //when condition will be true element will be sotred.
+let y = x.filter( (val , i , arr) => val > 0);
+
+__________________________________________________end
+__________________________________________________start
+-----------------------
+| map method          |
+-----------------------
+
+-------------------->THEORY:
+ - creates a new array from operations performed on previous array elements
+
+-------------------->OPERATIONS:
+-------------------->CODE:
+const x = [1,1,1,1];
+const y = x.map(function(value , i){ return value * 2 + i; }); // i <- index.
+const y = x.map(value => value * 2);
+
+__________________________________________________end
+__________________________________________________start
+-----------------------
+| closures            |
+-----------------------
+
+-------------------->THEORY:
+ - it happens in perticuar situation (function remembers variables from its parent function.)
+
+-------------------->OPERATIONS:
+
+-------------------->CODE:
+const fun_one = function() {
+    let x = 0;
+    return function() {
+        x++;
+        console.log(x);
+    }
+}
+const fun_two = fun_one();
+fun_two();  //x will increment and it will be print.
+
+#more_example
+let f;
+const g = function () {
+  const a = 23;
+  f = function () {         //now f closure is a.
+    console.log(a * 2);
+  };
+};
+//when h reinitilizes f , f closure changes to b,
+const h = function () {
+  const b = 777;
+  f = function () {
+    console.log(b * 2);
+  };
+};
+g();
+f();
+console.dir(f);
+// Re-assigning f function
+h();
+f();
+console.dir(f);
+//setTimeout(1000); is also an example of closure.
+
+__________________________________________________end
+__________________________________________________start
+--------------------------------------------------
+| immediately invoked function expression (IIFE) |
+--------------------------------------------------
+
+-------------------->THEORY:
+ - calling a function as soon as we create it.
+
+#Use an IIFE to Create a Module
+ - An immediately invoked function expression (IIFE) is often used to group related functionality into a single object or module. For example, an earlier challenge defined two mixins:
+
+function glideMixin(obj) {
+  obj.glide = function() {
+    console.log("Gliding on the water");
+  };
+}
+function flyMixin(obj) {
+  obj.fly = function() {
+    console.log("Flying, wooosh!");
+  };
+}
+
+=> converting the above function into a module.
+
+let motionModule = (function () {
+  return {
+    glideMixin: function(obj) {
+      obj.glide = function() {
+        console.log("Gliding on the water");
+      };
+    },
+    flyMixin: function(obj) {
+      obj.fly = function() {
+        console.log("Flying, wooosh!");
+      };
+    }
+  }
+})();
+
+# The advantage of the module pattern is that all of the motion behaviors can be packaged into a single object that can then be used by other parts of your code.
+
+ex: 
+motionModule.glideMixin(duck);
+duck.glide();
+
+-------------------->CODE:
+(function() {
+    console.log('hi');
+    const x = 4;
+})();
+__________________________________________________end
+__________________________________________________start
+-----------------------
+| functions           |
+-----------------------
+
+-------------------->THEORY:
+ - functions that we use as variables are first class function.
+ - funciton that can recive a function , or return a function is higher order functions.
+
+-------------------->OPERATIONS:
+-------------------->CODE:
+#function_accepting_callback_functions
+const fun_one(x) {
+    return x + 1;
+}
+
+const fun_two(x) {
+    return x - 1;
+}
+
+const fun_main(x , fn) {
+    return fn(x);
+}
+
+#function_returning_function
+const fun_one(x) {
+    return function(n) {
+        console.log(x + n);
+    }
+}
+const fun_two = fun_one(1);
+fun_two(2);
+fun_one(1)(2);
+
+#nested_arrow_function
+const fun_main = p1 => p2 => console.log(p1+p2);
+
+#call_methond
+const obj = {
+    x: 1,
+    y: 2,
+    fun_one(p) {
+        console.log(this.x + this.y + p);
+    },
+}
+const fun = obj.fun_one;
+fun.call(obj , 5);  // 1_p <- object; 2_p <- parameters;
+const obj_two = {
+    x: 9,
+    y: 100,
+}
+fun.call(obj_two , 600);
+
+#apply_method
+const obj = {
+    x: 1,
+    y: 2,
+    fun_one(p , q , r) {
+        console.log(this.x + this.y + p);
+    },
+}
+const fun = obj.fun_one;
+fun.apply(obj , [1,2,3]); //requires array of data as parameters.
+fun.call(obj , ...[1,2,3]); //similer
+
+#bind_methond 
+const obj = {
+    x: 1,
+    y: 2,
+    fun_one(p , q , r) {
+        console.log(this.x + this.y + p);
+    },
+}
+const fun = obj.fun_one;
+const fun_obj = fun.bind(obj , 2);  //binds the function to object we are setting , and returns the function; also setting first paramenter; 
+fun_obj(3 ,4);    //so we can directly call it.
+//IMPORTANT NOTE: we have to use bind keyword in event listner so that 'this' keyword points to the object not the document element.
+
+#partial_application_of_bind_method
+const fun_one = (x , y) => x + y;
+const fun_two = fun_one.bind(null , 1); //setting the first default.
+const fun_three = fun_one.bind(null , 2);
+fun_two(1); // 1+1
+fun_three(2); // 2+2
+
+__________________________________________________end
+__________________________________________________start
+-----------------------
+| data type string    |
+-----------------------
+
+-------------------->THEORY:
+-------------------->OPERATIONS:
+my_string.splice(0,2); // 0 -> where to start , 2-> how many element to delete.
+
+index	Required.
+    The position to add/remove items.
+    Negative value defines the position from the end of the array.
+howmany	Optional.
+    Number of items to be removed.
+item1, ..., itemX	Optional.
+    New elements(s) to be added.
+
+console.log(my_string.length);
+
+console.log(my_string.indexOf('e')); // -1 if not found;
+
+console.log(my_string.lastIndexOf('e')); //last occurance
+
+console.log(my_string.slice(4, 7)); //supports -2 -1 like python;
+
+console.log(my_string.toLowerCase()); 
+
+console.log(my_string.toUpperCase()); 
+
+console.log(my_string.trim())   //to remove spaces.
+
+console.log(my_stirng.trimStart());
+
+console.log(my_stirng.trimEnd());
+
+console.log(my_string.replace('l' , 'e'));
+
+console.log(my_stirng.replaceAll('l' , 'e'));
+
+console.log(my_string.includes('l'));
+
+console.log(my_string.startsWith('le'));
+
+console.log(my_string.endsWith('eo'));
+
+console.log(my_string.split('+')); //leo+elevel -> "leo" , "elevel"
+
+console.log(['leo' , 'eleven'].join(' ')); // 'leo eleven' join an array to one string.
+
+console.log('leo'.padStart(5 , '#')); leo -> ##leo
+
+console.log('leo'.padEnd(5 , '#')); leo -> leo##
+
+console.log('leo'.repeat(5));
+
+
+-------------------->CODE:
+#reverse_a_string.
+console.log([...'hello'].reverse().join(''));
+
+#find_the_largest_element_in_string
+function findLongestWordLength(str) {
+  let len = 0,
+    newLen = 0;
+  let word = "";
+  for (let i = 0, j = 0; i < str.length; ) {
+    word = "";
+    for (; str[j] != " " && j < str.length; j++) word += str[j];
+    newLen = word.length;
+    len = newLen > len ? newLen : len;
+    i = j;
+    j++;
+  }
+  return len;
+}
+__________________________________________________end
+__________________________________________________start
+-----------------------
+| data type map       |
+-----------------------
+
+-------------------->THEORY:
+ - any type variable name , any type value.
+
+-------------------->OPERATIONS:
+const my_map = new Map();
+my_map.set('name' , 'leo');
+my_map.set(1 , 'one');
+my_map.set(2,'two').set(2,'three');
+my_map.get(2);
+my_map.delete('name');
+my_map.clear();
+
+-------------------->CODE:
+const my_map_two = new Map([['name' , 'leo'] , [1 , 'one']]);
+
+#converting_object_to_map
+const my_map_three = new Map(Object.entries(obj));
+
+#iterating_map_for_of
+for(const [i , j] of my_map_two){
+    console.log(i , j);
+}
+
+#iterating_map_forEach
+const my_map = new Map([['one' , 1] , ['two' , 2]]);
+my_map = forEach(function(value , key , map){
+        console.log(value , key , map);
+});
+
+__________________________________________________end
+__________________________________________________start
+-----------------------
+| data type set       |
+-----------------------
+
+-------------------->THEORY:
+ - no dublicates values , remove if exist.
+
+-------------------->OPERATIONS:
+console.log(my_set.size); //gives the size of the set.
+console.log(my_set.has('leo')); //to check if a element is present.
+
+my_set.add('elevel');
+my_set.delete('leo');
+
+my_set.clear(); //delete whole set.
+
+#iterating_set_forEach
+const my_set = new Set(['one' , 'two' , 'three']);
+my_set.forEach(function(value , _ , set){
+        console.log(value , set);
+})
+
+-------------------->CODE:
+const my_set = new Set(['leo' , 'leo' , 'elven' , 'elven']);
+console.log(new Set('leo'));    //output:- 'l' , 'e' , 'o'
+
+__________________________________________________end
+__________________________________________________start
+-----------------------
+| looping objects     |
+-----------------------
+
+-------------------->THEORY:
+ - simple ways to loop over objects.
+
+-------------------->OPERATIONS:
+
+-------------------->CODE:
+#to_get_keys_names
+const properties = Object.keys(obj); //will return array of names
+
+#to_get_values
+const values = Object.values(obj);
+
+#to_get_everything
+const entries = Object.entries(obj); //[['name' , 'leo'] , ['age' , 19]];
+
+
+__________________________________________________end
+__________________________________________________start
+---------------------
+| optional chaining |
+---------------------
+
+-------------------->THEORY:
+ - if a property doesnt exist and we dont know we use it data.leo?.name
+
+-------------------->OPERATIONS:
+-------------------->CODE:
+#to_check_if_a_method_exist_in_object.
+const x = {
+    one: 1,
+    add(a,b) {
+        return a + b;
+    },
+}
+console.log(x.add?.(0,1) ?? 'Method does not exitst');
+
+#array_and_optional_chaining
+const users = [{ name: 'Jonas', email: 'hello@jonas.io' }]; //array with an object in it.
+console.log(users[0]?.name ?? 'User array empty'); //if object consist name property.
+if (users.length > 0) console.log(users[0].name); //if we dont use optional chaining.
+else console.log('user array empty');
+
+__________________________________________________end
+__________________________________________________start
+---------------
+| for of loop |
+---------------
+
+-------------------->THEORY:
+ - to itterate any data type
+
+-------------------->OPERATIONS:
+-------------------->CODE:
+#iterating_array
+const x = [1,2,3,4];
+for(const i of x) console.log(i);
+
+#iterating_object
+const x = {one: 1, two: 2, three:3,};
+for(const [i , e] of Object.entries(x)) console.log(`${i}: ${el}`);
+
+__________________________________________________end
+__________________________________________________start
+-------------------------------
+| logical assignment operators|
+-------------------------------
+
+-------------------->THEORY:
+ - 
+
+-------------------->OPERATIONS:
+-------------------->CODE:
+#or_assignment_operator
+const x = 9;
+x = x || 10;
+x ||= 10; //if x is false it will be return.
+
+#and_assignment_operator
+const x = 5;
+x = x && 10;
+x &&= 10; //if x is false it will be return.
+
+#nullish_assignment_operator
+const x = 0;
+x = x ?? 10; //similer to or.
+x ??= 10; //if x is false it will be return.
+__________________________________________________end
+__________________________________________________start
+---------------------------------------
+| the nullish coalescing operator (??)|
+---------------------------------------
+
+-------------------->THEORY:
+ - even if numGuests is 0 it will return 0. coz it looks for nullish values with are null and undefined (only they are false.);
+
+-------------------->OPERATIONS:
+-------------------->CODE:
+
+restaurant.numGuests = 0;
+const guests = restaurant.numGuests || 10; //this is wrong coz real value is 0 , and it will return 10.
+console.log(guests);
+
+// Nullish: null and undefined (NOT INCLUDE: 0 or '')
+const guestCorrect = restaurant.numGuests ?? 10;
+__________________________________________________end
+__________________________________________________start
+--------------------------------
+| short circuiting (&& and ||) |
+--------------------------------
+
+-------------------->THEORY:
+ - console.log(3 || 'Jonas'); <- the first value is true it will be returned.
+ - console.log(3 && 'Jonas'); <- the first falsy value will be returned.
+
+-------------------->OPERATIONS:
+-------------------->CODE:
+const x = 5;
+const y = x || 5; //if x is falsy value , 5 will be returned.
+
+const x = 0;
+const y = x && 5; //if x is falsy it will be returned.
+__________________________________________________end
+__________________________________________________start
+------------------
+| reset operator |
+------------------
+
+-------------------->THEORY:
+ - to take multiple values to a single value.
+
+-------------------->OPERATIONS:
+-------------------->CODE:
+function add(x , ...other_ingredients){
+    console.log(main_ingredient);
+    console.log(...other_ingredient);
+}
+
+const [a , b , ...others] = [1,2,3,4,5];
+
+const {sat , ...weekdays } = {monday: 'monday', tue:'2': wed: '3'}
+
+#reset_and_function
+const add = function (...numbers) {
+  let sum = 0;
+  for (let i = 0; i < numbers.length; i++) sum += numbers[i];
+  console.log(sum);
+};
+__________________________________________________end
+__________________________________________________start
+-------------------
+| spread operator |
+-------------------
+
+-------------------->THEORY:
+ - spreds any iteratable data with ','; 
+
+-------------------->OPERATIONS:
+-------------------->CODE:
+const x = [1,2,3];
+const y = [8 , 9 , ...x];   // 8 , 9  , 1 , 2 , 3
+function_name(...x);
+
+#copy_array
+const newarr = [...oldarr];
+
+#joine_two_array
+const newarr = [...oldone , ...oldtwo];
+
+#objects
+const obj_one = {x: 1 , y:2};
+const obj_two = {a:5 , ...obj_one , b:6};
+__________________________________________________end
+__________________________________________________start
+------------------------
+| destructuring object |
+------------------------
+
+-------------------->THEORY:
+ - we can pass objects to function; function add({x=1,y=2}) {return x+y}; add({x=5 , y = 5});
+
+-------------------->OPERATIONS:
+-------------------->CODE:
+const data = {
+    name: 'leo',
+    age: 19 , 
+}
+
+#destructuring_customName_defaultValue
+const {name: custom_name = 'unknown', age: leo_age = 0} = data;
+
+__________________________________________________end
+__________________________________________________start
+-----------------------
+| destructuring array |
+-----------------------
+
+-------------------->THEORY:
+ - destructuring consist default values; const [p=0 , q=0] = [5,10];
+
+-------------------->OPERATIONS:
+
+-------------------->CODE:
+const arr = [1,2,3];
+let [x , y , z] = arr;
+
+#nested_destructuring
+const nested = [2,4,[5,6]];
+const [i , , [j , k]] = nested;
+
+#switching_variables_using_destructuring
+const x = 5;
+const y = 8;
+[x , y] = [y , x];
+
+#return_two_value_from_function
+const ll = function() {
+    return [1,2,3];
+}
+const [x , y , z] = [1,2,3];
+__________________________________________________end
+__________________________________________________start
+------------------------------
+| function arguments keyword |
+------------------------------
+
+-------------------->THEORY:
+ - to access extra variables passed to the function.
+ - arrow function does not have arguments keyword.
+
+-------------------->OPERATIONS:
+-------------------->CODE:
+const add = function (a , b) {
+    console.log(arguments); <- its an object full of variables.
+    const c = arguments ? 5 : 0;
+    return a + b + c;
+}
+add(1,2,3);
+
+__________________________________________________end
+__________________________________________________start
+----------------
+| this keyword |
+----------------
+
+-------------------->THEORY:
+ - it points to the object from which it has been called.
+ - function expression do not have their own this keyword;in arrow function it points to the upper parent that called that function.
+ - in normal expression function this keyword is undefined.
+ - function(fun_one) inside an object that consist a function does not have access to this keyword; solution for this: const self = this; in fun_one.
+ - in arrow function this points to the closes parent in the hier.
+
+-------------------->OPERATIONS:
+-------------------->CODE:
+__________________________________________________end
+__________________________________________________start
+--------
+| math |
+--------
+
+-------------------->THEORY:
+ - this is used for math operations.
+
+-------------------->OPERATIONS:
+Math.trunce() <- this function: 23.9 = 24; this will give 23 for -23.
+
+Math.random() <- creates random numbers from 0 to 1.
+
+Math.abs(-200); <- -200 => 200
+
+Math.sqrt(25); //5
+
+console.log(25**(1/2))
+
+Math.max(1 ,2,3 , 4 , 5, 6 , 7);    //7
+
+Math.min(1,2,3,4,5,6,7);    // 1
+
+#area_of_circle
+console.log(Math.PI * Number.parseFloat('10px') ** 2);
+
+#random_value
+console.log(Math.floor(Math.random() * 6) + 1); //range: 0 to 6
+
+#generate_random_number_limit
+const randomInt = (min, max) =>
+  Math.floor(Math.random() * (max - min) + 1) + min;
+
+#rounding_numbers
+console.log(Math.round(23.3)); //23
+
+#rounding_to_celing
+console.log(Math.ceil(23.3)); //23
+console.log(Math.ceil(23.9)); //24
+
+conosle.log(Math.floor(23.3)); //23
+conosle.log(Math.floor(23.9)); //23
+
+#rounding_decimals
+console.log((2.7).toFixed(3)); //up to 3 decimal part. 2.700
+
+
+-------------------->CODE:
+#to_create_random_numbers (1 to 6).
+let random_number = Math.trunc(Math.random() * 6) + 1; 
+
+__________________________________________________end
+__________________________________________________start
+---------------------------------------
+| templet listerals (templet strings)|
+---------------------------------------
+
+-------------------->THEORY:
+ - creating string which as variables in it , as well as HTML document also;
+ - we can even use this in .classList.remove(`.${variable}`);
+
+-------------------->OPERATIONS:
+-------------------->CODE:
+#simple_example
+let first_name = 'eleven';
+let last_name = 'eleven';
+let info = `This is ${first_name} ${last_name} ${0+0}age old`;
+
+#using_in_getElementById
+document.getElementById(`current--${activeplayer}`).textContent = 0;
+__________________________________________________end
+__________________________________________________start
+--------------------
+| data type object |
+--------------------
+
+-------------------->THEORY:
+ - every thing in JS is an object.
+ - object variable points to same object location.
+    example: 
+        const leo = {name: "leo" , age: 19,};
+        const temp = leo;   //changes to temp will reflect in leo.
+
+ - to get array of object keys. 
+console.log(Object.keys({'one':1,'two':2,'three':3}));
+
+-------------------->CODE:
+const leo = {
+    first_name: 'eleven',
+    last_name: 'eleven',
+    age: NaN,
+    friends: ['leo' , 'eleven'],
+    print_name: function() {
+        console.log(this.first_name , this.last_name);
+    }
+}
+
+console.log(leo['first_name']);
+console.log(leo.first_name);
+
+// to use variable to access object element.
+const name = 'name';
+console.log(leo['first_' + name]);
+
+leo.iq = 1000; // to add new properties.
+leo.['iq'] = 1000; // to add new properties.
+
+#to_copy_object
+const temp = Object.assign({} <- empty_object , jessica2); //shallow copy
+
+#enhanced object literals
+const x = ['one' , 'two' , 'three'];
+const v = 'ee'
+const y = {
+    x[0]: 1,
+    two: 2,
+    `thr${v}`: 3,
+    add(x , y) {
+        return x + y;
+    }
+}
+
+#mix two objects.
+console.log(Object.assign({one: 1} , {two: 2}));
+
+__________________________________________________end
+__________________________________________________start
+-------------------
+| data type array |
+-------------------
+
+-------------------->THEORY:
+ - every thing in JS is at the end an object.
+
+-------------------->OPERATIONS:
+#check if an array is an arran.
+console.log(Array.isArray([1,2,3,4]));
+
+#add_element_array
+const x = friends.push("one"); //front
+const x = friends.unshift("two"); //end
+
+#remove_element_array
+let name = friends.pop(); //last; returns popped.
+let name = friends.shift(); //first
+
+#get_element_array
+let index_of_leo = friends.indexOf('leo');
+
+#check_if_exist_array
+let exist = friends.includes('leo');
+
+#array_slice
+ - return new array withoud affecting older array.
+let arr = ['a', 'b', 'c', 'd', 'e'];
+arr = arr.slice(0 , 3)
+console.log(arr);  // a b c d
+
+ - example: 
+function frankenSplice(arr1, arr2, n) {
+  let temp2 = [
+    ...arr2.slice(0, n),
+    ...arr1.slice(0, arr1.length),
+    ...arr2.slice(n, arr2.length),
+  ];
+  return temp2;
+}
+console.log(frankenSplice([1, 2, 3], [4, 5, 6], 1));
+
+#array_splice
+ - changes the original array and returs it.
+console.log(arr.splice(-1)); //removes the list element
+console.log(arr.splice(1,2)); //at position 1 and remove 2 elements.
+
+ - we can give 3 parameters to splice.
+arr = [1,2,3,4,5];
+arr.splice(0 , 2 , 6 , 7);  // [6 , 7 , 3 , 4 , 5]
+
+#reverse_array
+console.log(arr.reverse()); //changes the original array & returns it.
+
+#concat_arrays
+let x = [1,2,3];
+let y = [4,5,6];
+let t = x.concat(y);
+
+
+#at_method
+const x = [1,2,3];
+console.log(arr.at(0));
+console.log(arr.slice(-1)[0]);  // give the last element and stores it in an new array and we use 0th index of the array.
+
+#looping_array_for_of
+const x = [1,2,3];
+for(const [i , m] of x) console.log(i , m);
+
+#looping_array_forEach
+x.forEach(function(m , i , x){
+        console.log(`index: ${i} element: ${m} whole_array: ${x}`);
+})
+
+#findIndex_method_array
+console.log(x.findIndex(2));
+
+#sorting_array_of_strings 
+const x = ['one' , 'two' , 'three'];
+console.log(x.sort()); //changes the original array
+
+ex: 
+function alphabeticalOrder(arr) {
+  return arr.sort((a , b) => {
+    return a === b ? 0 : a > b ? 1 : -1;
+  });
+}
+
+#sorting_array_of_numbers
+const x = [5,3,4,2,3];
+x.sort((a , b) => a - b);   //if function return 1 , sort it; a , b adjecent element.
+
+#fill_array_normal
+const x = new Array(7); // 7 empty spaces
+x.map(() => 5); //fill it with 5.
+
+#fill_method() 
+const x = new Array();
+x.fill(1 , 3 , 5); // fill() 1_p - where to start , 2_p - where to end , 3_p - what to fill.
+
+#find_method() 
+
+const x = [1,2,3,4,5];
+console.log(x.find(el => el === 3));	//will find the element
+
+-------------------->CODE:
+
+const friends = ["leo" , eleven];
+console.log(friends[friends.length - 1]); //to get last element.
+
+__________________________________________________end
+__________________________________________________start
+---------------------
+| function syntax's |
+---------------------
+
+-------------------->THEORY:
+ - function can call other function.
+ - arrow function is good for small code.
+
+-------------------->CODE:
+//function dicleration.
+function fun(one , two) {return one + two;}
+
+//function expression.
+const fun = function(one , two) {return one+two;}
+
+const arrow_function = one => return one * 2;
+__________________________________________________end
+__________________________________________________start
+--------------
+| use strict |
+--------------
+
+-------------------->THEORY:
+by using this mode , it will give error , rather the defining new variable.
+
+-------------------->CODE:
+'use strict';
+let xx_pp = 5;
+xx__p = 10; //this will give error 
+
+__________________________________________________end
+__________________________________________________start
+--------------------
+| ternary operator |
+--------------------
+
+-------------------->THEORY:
+condition ? if_true : if_false ;
+
+-------------------->CODE:
+let a = 5;
+let b = a === 5 ? 5 : 6;
+__________________________________________________end
+__________________________________________________start
+--------------------------------
+| statements and expressions |
+--------------------------------
+
+-------------------->THEORY:
+statements ends with " ; "
+
+-------------------->CODE:
+3 + 4 // expression
+true && false && !false // expression
+
+const me = 'leo'; // statement
+__________________________________________________end
+__________________________________________________start
+---------------------
+| logical operators |
+---------------------
+
+-------------------->THEORY:
+&& <- returns the first false value.
+|| <- returns the first true value.
+
+-------------------->CODE:
+let a = true , b = false , c;
+c = a || b; //this will return a
+c = b || a; //this will return a
+
+c = a && b; // this will return b
+c = b && a; // this will return b
+__________________________________________________end
+__________________________________________________start
+---------------------------
+| truthy and falsy values |
+---------------------------
+
+-------------------->THEORY:
+falsy values: 0 , '' , undefined , null , NaN; values that gives false.
+rest all is truthy value.
+
+-------------------->CODE:
+let height = 0;
+if (height)
+  console.log('YAY! Height is defined');
+ else 
+  console.log('Height is UNDEFINED');
+__________________________________________________end
+__________________________________________________start
+--------------------------------
+| type conversion and coercion |
+--------------------------------
+ 
+-------------------->THEORY:
+type conversion = converting from one type to another; string to number; 
+type coercion = Js automatically converts the type.
+
+-------------------->CODE:
+console.log(Number('45'));
+console.log(String(23));
+console.log(+'15');
+
+__________________________________________________end
+__________________________________________________start
+--------------------
+| let , const , var|
+--------------------
+
+-------------------->THEORY:
+let leo = "name" <- normal variable exist in its own scope. 
+const leo = "name" <- cannot be changed.
+var leo = "name <-" var is function scoped
+
+-------------------->CODE:
+
+__________________________________________________end
+__________________________________________________start
+---------------------------
+| link a java_script file |
+---------------------------
+
+-------------------->THEORY:
+To link a java script file in html.
+
+-------------------->CODE:
+<script src="/js/new.js"></script>
+__________________________________________________end

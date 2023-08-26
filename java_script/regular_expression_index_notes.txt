@@ -1,0 +1,302 @@
+- test() method
+- OR operation
+- cases //ig..
+- match() method
+- wildcard character "."
+- character set
+- *+ in regex
+- greedy/lazy 
+- short_cuts
+- username problem 
+- Quantity specifiers
+- possible existence "?"
+- Positive and Negative Lookahead
+- Mixed Grouping of Characters
+- Capture Groups
+
+#--------------------------------------------------#NOTES
+__________________________________________________start
+-----------------------
+| Capture Groups      |
+-----------------------
+
+-------------------->THEORY:
+Reuse Patterns Using Capture Groups
+let repeatStr = "row row row your boat";
+You could use /row row row/
+
+but what if you don't know the specific word repeated? Capture groups can be used to find repeated substrings.
+
+Use Capture Groups to Search and Replace
+
+You can search and replace text in a string using .replace() on a string. The inputs for .replace() is first the regex pattern you want to search for. The second parameter is the string to replace the match or a function to do something.
+
+You can also access capture groups in the replacement string with dollar signs ($).
+ex: "Code Camp".replace(/(\w+)\s(\w+)/, '$2 $1');
+
+-------------------->CODE:
+let repeatNum = "42 42 42";
+let reRegex = /^(\d+) \1 \1$/; // to match multiple numbers.
+result = reRegex.test(repeatNum);
+
+let wrongText = "The sky is silver.";
+let silverRegex = /silver/;
+wrongText.replace(silverRegex, "blue"); //1p -> regex , 2p -> string to replace with , this will return the string.
+
+let str = "one two three";
+let fixRegex = /(\w+)\s(\w+)\s(\w+)/; // Change this line
+let replaceText = "$3 $2 $1"; // Change this line
+result = str.replace(fixRegex, replaceText);
+
+// remove white space
+let hello = "   Hello, World!  ";
+let wsRegex = /^(\s+)(.*)(\s+)$/; // Change this line
+result = hello.replace(wsRegex, "Hello, World!"); // Change this line
+__________________________________________________end
+__________________________________________________start
+-------------------------------
+| Mixed Grouping of Characters|
+-------------------------------
+
+-------------------->THEORY:
+Sometimes we want to check for groups of characters using a Regular Expression and to achieve that we use parentheses ().
+
+If you want to find either Penguin or Pumpkin in a string, you can use the following Regular Expression: 
+
+/P(engu|umpk)in/g
+
+-------------------->CODE:
+console.log("Eleanor Roosevelt".match(/(Franklin D.|Eleanor) Roosevelt/));
+
+__________________________________________________end
+__________________________________________________start
+----------------------------------
+| Positive and Negative Lookahead|
+----------------------------------
+
+-------------------->THEORY:
+For checking multiple patterns over the same string.
+
+Positive lookahead (?=...) 
+    - if the pattern is present then the string will be returned.
+
+Negative lookahead (?!...) 
+    - if the pattern is not present then the string will be returned.
+
+-------------------->CODE:
+let checkPass = /(?=\w{3,6})(?=\D*\d)/;
+
+console.log("bana12".match(/(?=\w{5,})(?=\D\w*\d{2})/));
+
+__________________________________________________end
+__________________________________________________start
+--------------------------
+| possible existence "?" |
+--------------------------
+
+-------------------->THEORY:
+
+You can specify the possible existence of an element with a question mark, ?. This checks for zero or one of the preceding element. 
+
+You can think of this symbol as saying the previous element is optional.
+
+-------------------->CODE:
+console.log('lo'.match(/le?o/)); // here e is optional 
+
+console.log("favorite".match(/favou?rite/));
+
+__________________________________________________end
+__________________________________________________start
+-----------------------
+| Quantity specifiers |
+-----------------------
+
+-------------------->THEORY:
+Quantity specifiers are used with curly brackets ({ and }). You put two numbers between the curly brackets - for the lower and upper number of patterns.
+
+For example, to match only the letter a appearing between 3 and 5 times in the string ah, your regex would be /a{3,5}h/.
+
+to match only the string hah with the letter a appearing at least 3 times, your regex would be /ha{3,}h/
+
+To match only the word hah with the letter a 3 times, your regex would be /ha{3}h/
+
+
+-------------------->CODE:
+'aaaah'.match(/a{3,5}h);
+
+console.log("Ohhh no".match(/Oh{3,6} no/));
+
+__________________________________________________end
+__________________________________________________start
+-----------------------
+| username problem    |
+-----------------------
+
+-------------------->THEORY:
+Usernames can only use alpha-numeric characters
+
+The only numbers in the username have to be at the end. There can be zero or more of them at the end. Username cannot start with the number.
+
+Username letters can be lowercase and uppercase.
+
+Usernames have to be at least two characters long. A two-character username can only use alphabet letters as characters.
+
+-------------------->CODE:
+let username = "JackOfAllTrades";
+let userCheck = /^[a-z][a-z]+\d*$|^[a-z]\d\d+$/i;
+let result = userCheck.test(username);
+__________________________________________________end
+__________________________________________________start
+-----------------------
+|  short_cuts         |
+-----------------------
+
+-------------------->THEORY:
+All characters: 
+
+/\w/ = [A-Za-z0-9_] (including underscore)
+/\W/ = [^A-Za-z0-9_] opposit of \w (including underscore)
+
+Number: 
+\d = [0-9] 
+\D = [^0-9]
+
+Space's tabs:
+\s -> [ \r\t\f\n\v]
+\S -> [^\r\t\f\n\v]
+
+-------------------->CODE:
+console.log("The five boxing wizards jump quickly.".match(/[\w+]/gi).length); // to match all characters.
+
+console.log("A1".match(/^[A-Za-z]+[\w]+$/g));
+
+__________________________________________________end
+__________________________________________________start
+-----------------------
+| greedy/lazy         |
+-----------------------
+
+-------------------->THEORY:
+A greedy(largest) match finds the longest possible part of a string that fits the regex pattern and returns it as a match. "titanic"
+
+A lazy(smallest) match, which finds the smallest possible part of the string that satisfies the regex pattern. "ti"
+
+-------------------->CODE:
+console.log("<h1>hello</h1>".match(/<h.*?>/)); // *? is used for lazy match
+__________________________________________________end
+__________________________________________________start
+-----------------------
+| *+ in regex         |
+-----------------------
+
+-------------------->THEORY:
+Plus sign + to look for one or more characters.
+
+Asterisk * to look for zero or more characters.
+
+-------------------->CODE:
+console.log('aaa'.match(/a+/)); // this will match aaa.
+console.log('aaa'.match(/a*/)); // this will match aaa , if there is not a it will not return null.
+
+__________________________________________________end
+__________________________________________________start
+-----------------------
+| character set       |
+-----------------------
+
+-------------------->THEORY:
+you want to match bag, big, and bug but not bog. You can create the regex /b[aiu]g/ to do this. The [aiu] is the character class that will only match the characters a, i, or u.
+
+To define a range:
+[a-zA-Z0-9]
+
+To ignore some Characters
+[^abc]
+
+Outside of a character set, the caret is used to search for patterns at the beginning of strings.
+ex: 'hello leo'.match(/^hello/);
+
+You can search the end of strings using the dollar sign character $ at the end of the regex.
+
+-------------------->CODE:
+console.log("hi my name is leo lao".match(/l[ea]o/g));
+console.log("leo is mad".match(/^leo/));
+console.log("is mad leo".match(/leo$/));
+
+__________________________________________________end
+__________________________________________________start
+-------------------------
+| wildcard character "."|
+-------------------------
+
+-------------------->THEORY:
+Match any one character that can be any thing in the string. 
+ex: 
+'leo luo lao'.match(/l.o/g); // ['leo' , 'luo' , 'lao']
+
+-------------------->CODE:
+string = "my name is leo lea leb lec";
+regex = /le./gi;
+console.log(string.match(regex));
+__________________________________________________end
+__________________________________________________start
+-----------------------
+| match() method      |
+-----------------------
+
+-------------------->THEORY:
+You can also extract the actual matches you found with the .match() method.
+
+syntax: 
+'string to check'.match(/regex/);
+
+-------------------->CODE:
+console.log('String'.match(/string/i));
+__________________________________________________end
+__________________________________________________start
+-----------------------
+| cases //ig..        |
+-----------------------
+
+-------------------->THEORY:
+i -> IgnoreCase
+
+/ignorecase/i. This regex can match the strings ignorecase, igNoreCase, and IgnoreCase.
+
+g -> Global 
+
+'leo leo leo'.match(/leo/g);
+To search or extract a pattern more than once, you can use the global search flag: g. (to get all the matching)
+
+This will return an object. containing match string.
+
+-------------------->CODE:
+console.log(/Leo/i.test('hi this is leo'));
+console.log("and leo and leo".match(/leo/g));
+__________________________________________________end
+__________________________________________________start
+-----------------------
+| OR operation        |
+-----------------------
+
+-------------------->THEORY:
+If you wanted to match the strings yes or no, the regex you want is /yes|no/
+
+-------------------->CODE:
+
+console.log(/leo|eleven/.test('hi this is eleven'));
+__________________________________________________end
+__________________________________________________start
+-----------------------
+| test() method       |
+-----------------------
+
+-------------------->THEORY:
+The .test() method takes the regex, applies it to a string and returns true or false if your pattern finds something or not. 
+
+The regex /Kevin/ will not match kevin or KEVIN.
+
+-------------------->CODE:
+console.log(/leo/.test(hi my name is leo));
+
+__________________________________________________end
