@@ -1,3 +1,7 @@
 # This is the index
 
-<a href="https://github.com/TheLazyBusyCoder/web_notes/tree/main/html_css">html css</a>
+<h1>Index<h1>
+<ul>
+  <li><a href="html_css">HTML & CSS</a></li>
+  <li><a href="java_script">JavaScript</a></li>
+</ul>
